@@ -1,0 +1,53 @@
+<div fxLayout="row">
+  <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+
+      <mat-toolbar  style="font-size: 16px;">
+        <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between center">
+
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <img src="assets/1200px-Logo-YTS.png" class="form-logo-img">
+          </div>
+
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" >
+              <mat-form-field floatLabel="never">
+                <mat-label><mat-icon>search</mat-icon></mat-label>
+                <input
+                  (keyup.enter)="onSearch()"
+                  formControlName="search"
+                  type="text"
+                  matInput>
+              </mat-form-field>
+              <button mat-raised-button color="accent">LOGOUT</button>
+            </form>
+          </div>
+
+        </div>
+      </mat-toolbar>
+
+  </div>
+</div>
+
+
+<div fxLayout="column" fxLayoutAlign="center">
+
+  <div *ngIf="showStatus" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="status-msg">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" >
+      <p class="stat-msg">Search above to get the movie you wanted. </p>
+    </div>
+  </div>
+
+  <div *ngIf="showErr" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="status-msg">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" >
+      <p class="err-msg">No Results found. Please refine your search.</p>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="start" style="margin-top: 1rem">
+  <app-movie-card></app-movie-card>
+</div>
+<!--div fxLayout="column" fxLayoutAlign="end" class="status-msg">
+  <p class="stat-msg" style="text-align: center;color: #F2F2F2 "> <code>Nice</code></p>
+</div-->
+

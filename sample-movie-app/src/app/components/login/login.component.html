@@ -1,0 +1,70 @@
+<div fxLayout="row" >
+  <div fxLayout="column" fxLayoutAlign="space-evenly center"
+       fxLayoutGap="30px;" class="logo-pane-div">
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/1200px-Logo-YTS.png" style="width: 40vw;">
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <p class="logo-caption">
+        Welcome to the clone app of YTS.MX (.LT) website. Here you can browse and download YIFY movies in excellent
+        720p, 1080p, 2160p 4K and 3D quality, all at the smallest file size. YTS Movies Torrents.
+      </p>
+    </div>
+
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="login-pane-div" >
+    <mat-card class="mat-elevation-z4 login-card">
+
+      <div fxLayout="column" fxLayoutAlign="space-evenly" fxLayoutGap="20px" class="item-wrapper">
+
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <img src="assets/1200px-Logo-YTS.png" class="form-logo-img">
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <h2>LOG IN</h2>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="space-evenly center" >
+
+          <form fxLayout="column" fxFlexFill fxLayoutAlign="space-evenly stretch"  fxLayoutGap="20px" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+
+            <mat-form-field>
+              <mat-label>E-mail</mat-label>
+              <input
+                formControlName="email"
+                type="email"
+                placeholder="Enter Email"
+                matInput>
+              <mat-error>
+                • Email is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                type="password"
+                placeholder="Enter Password"
+                matInput>
+              <mat-error>
+                • Password is required
+              </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+              <button type="submit" mat-raised-button color="accent">LOG IN</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+</div>
+

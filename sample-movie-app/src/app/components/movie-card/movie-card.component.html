@@ -1,0 +1,62 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+
+      <div (mouseover)="showPosterDetails= true"
+           (mouseout)="showPosterDetails=false"
+           class="mat-elevation-z8 movie-poster"
+           [style]="posterStyle"
+           fxLayoutAlign="center center">
+
+          <div *ngIf="true" fxLayout="column" fxLayoutAlign="space-between stretch" class="movie-poster">
+            <div fxLayout="column" style="color: #F2F2F2;padding-top: 10px; font-size: 32px;" class="movie-poster-title">
+              <p>Batman <br> <span class="movie-genre">Action</span></p>
+            </div>
+
+            <div fxLayout="column" fxFlexAlign="space-between center" >
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-bottom: 5px; background-color: #F2C94C"  fxFlexFill>
+                <div fxFlex>
+                  <p style="text-align: left; margin-bottom: 0px;padding-left: 20px"> 1992</p>
+                </div>
+
+                <div style="width:10px; height: 10px" fxFlex style="text-align: right">
+                  <button mat-icon-button
+                           (click)="onViewMoreClick()"><mat-icon color="primary" style="font-size: 32px;padding-right: 20px">play_circle_outline</mat-icon></button>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+      </div>
+
+    </div>
+
+
+
+  <!--div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card class="mat-elevation-z4" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-header>
+        <mat-card-title>Himalayan Peaks</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="assets/1200px-Logo-YTS.png" style="width: 100px;">
+      <mat-card-content>
+        <p>
+          The Himalayas is a mountain range in Asia.
+        </p>
+      </mat-card-content>
+      <mat-card-actions fxFlexFill>
+        <div fxLayout="row" fxLayoutAlign="space-between center"  fxFlexFill>
+
+            <p style="text-align: right; margin-bottom: 0px;"> 1992</p>
+
+            <div >
+              <button mat-button fxFlexFill><mat-icon>play_circle_outline</mat-icon></button>
+            </div>
+
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div-->
+</div>

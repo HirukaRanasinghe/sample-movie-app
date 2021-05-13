@@ -1,0 +1,23 @@
+.movie-poster{
+  width: 208px;
+  height: 315px;
+  background-size: contain;
+  text-align: center;
+  /*border-style: solid;
+  border-width:3px;
+  border-color: #F2F2F2;
+  border-radius: 1px;*/
+
+
+
+}
+.movie-genre{
+  font-size: 12px;
+  font-weight: lighter;
+
+}
+
+.movie-poster-title{
+  -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 55%);
+  mask-image: linear-gradient(to bottom, transparent 25%, black 75%);
+}
