@@ -6,29 +6,45 @@
            (mouseout)="showPosterDetails=false"
            class="mat-elevation-z8 movie-poster"
            [style]="posterStyle"
-           fxLayoutAlign="center center">
+           fxLayoutAlign="center center"></div>
 
-          <div *ngIf="true" fxLayout="column" fxLayoutAlign="space-between stretch" class="movie-poster">
-            <div fxLayout="column" style="color: #F2F2F2;padding-top: 10px; font-size: 32px;" class="movie-poster-title">
+          <div *ngIf="true" fxLayout="column" fxLayoutAlign="space-between stretch" class="movie-overlay">
+            <div fxLayout="column" style="color: #d4d4d4;padding-top: 10px; font-size: 32px;">
               <p>Batman <br> <span class="movie-genre">Action</span></p>
             </div>
 
-            <div fxLayout="column" fxFlexAlign="space-between center" >
-              <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-bottom: 5px; background-color: #F2C94C"  fxFlexFill>
+            <div fxLayout="column" fxFlexAlign="space-between center" fxLayoutGap="5px">
+
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <mat-icon class="star-gold" style="color: #F2C94C">star</mat-icon>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <p class="logo-caption" style="font-size: 20px; font-weight: bold;margin-bottom: 5px;">{{movieRating}}/10</p>
+              </div>
+
+              <!--div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="center center">
+
+                <div *ngFor="let star of stars" [ngClass]="[star.class]">
+                  <mat-icon>{{star.icon}}</mat-icon>
+                </div>
+              </div-->
+              <div fxLayout="row" fxLayoutAlign="space-between center" style="background-color: #F2C94C" >
                 <div fxFlex>
-                  <p style="text-align: left; margin-bottom: 0px;padding-left: 20px"> 1992</p>
+                  <p style="text-align: left; margin-bottom: 0px;padding-left: 20px;font-weight: bold;"> 1992</p>
                 </div>
 
                 <div style="width:10px; height: 10px" fxFlex style="text-align: right">
                   <button mat-icon-button
-                           (click)="onViewMoreClick()"><mat-icon color="primary" style="font-size: 32px;padding-right: 20px">play_circle_outline</mat-icon></button>
+                           (click)="onViewMoreClick()">
+                    <mat-icon color="primary" style="font-size: 32px;padding-right: 20px">play_circle_outline</mat-icon>
+                  </button>
                 </div>
 
               </div>
             </div>
 
 
-          </div>
+
       </div>
 
     </div>

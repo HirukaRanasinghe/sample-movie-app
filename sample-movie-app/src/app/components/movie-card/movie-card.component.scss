@@ -7,17 +7,37 @@
   border-width:3px;
   border-color: #F2F2F2;
   border-radius: 1px;*/
-
-
-
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 90%);
+  mask-image: linear-gradient(to bottom, transparent 10%, black 90%);
 }
 .movie-genre{
+
   font-size: 12px;
   font-weight: lighter;
 
 }
 
-.movie-poster-title{
-  -webkit-mask-image: linear-gradient(to bottom, transparent 20%, black 55%);
-  mask-image: linear-gradient(to bottom, transparent 25%, black 75%);
+.movie-overlay{
+  width: 208px;
+  height: 315px;
+  position: absolute;
+  text-align: center;
+}
+
+
+
+.star{
+  margin: 0px 0px;
+  color: #a9a5a5;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .3s;
+  transform: scale(1);
+}
+.star .mat-icon{
+  width: 40px;
+  height: 40px;
+}
+.star-gold{
+  color: orange;
 }

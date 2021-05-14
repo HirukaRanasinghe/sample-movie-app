@@ -1,41 +1,40 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {StoreModule} from '@ngrx/store';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EffectsModule} from '@ngrx/effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/login/login.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatDividerModule} from '@angular/material/divider';
-import { MatCardModule  } from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import { SearchPageComponent } from './components/search-page/search-page.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule} from '@angular/material/icon';
-import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import {SharedModule} from './shared/shared.module';
+import {AppRoutingModule} from './app-routing.module';
 
+import {Effects} from './store/app.effects';
+import {reducers, metaReducers} from './store/app.reducer';
+import {environment} from '../environments/environment';
+
+import {AppComponent} from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    SearchPageComponent,
-    MovieCardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
-    MatDividerModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule
+    SharedModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    EffectsModule.forRoot([...Effects]),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
