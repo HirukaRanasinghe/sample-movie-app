@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {MovieData} from '../../interfaces/data/movie-data';
 
 @Component({
   selector: 'app-movie-card',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
+  @Input() movieDetails: object;
+
   posterUrl = 'https://img.yts.mx/assets/images/movies/Batman_1989/medium-cover.jpg';
   posterStyle: string;
   showPosterDetails: boolean;
-  movieRating = 6.6;
 
-
-  selectedRating = 0;
+  /*selectedRating = 0;
   stars = [
     {
       id: 1,
@@ -40,20 +41,19 @@ export class MovieCardComponent implements OnInit {
       class: 'star-gray star-hover star'
     }
 
-  ];
+  ];*/
 
   constructor() { }
 
   ngOnInit(): void {
-    this.posterStyle = `background-image: url(${this.posterUrl});`;
+    this.posterStyle = `background-image: url(${this.movieDetails['medium_cover_image']});`;
     this.showPosterDetails = false;
-    this.selectStar(this.movieRating);
   }
   onViewMoreClick(): void{
     console.log('more details');
   }
 
-  selectStar(value): void{
+  /*selectStar(value): void{
     value = value / 2;
     console.log(value);
     // prevent multiple selection
@@ -79,7 +79,7 @@ export class MovieCardComponent implements OnInit {
     this.selectedRating = value;
 
 
-  }
+  }*/
 
 
 }

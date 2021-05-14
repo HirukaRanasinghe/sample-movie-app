@@ -14,4 +14,24 @@ export class MovieEffects{
     private http: HttpClient) {
   }
 
+  getMovieList = createEffect(() => {
+    console.log('Getting Movie Details in Effects: ');
+    return this.actions$.pipe(
+      ofType(movieActions.GET_ALL_MOVIE),
+      switchMap((data: movieActions.GetAllMovies) => {
+        return this.http.get<MovieData[]>(
+          'https://yts.mx/api/v2/list_movies.json').
+        pipe(
+          map( res => {
+            console.log('Get res: ', res);
+            return new movieActions.GetAllMoviesComplete(res);
+          }),
+          catchError(() => {
+            return of( new movieActions.GetAllMoviesFailed());
+          })
+        );
+      })
+    );
+  });
 }
+

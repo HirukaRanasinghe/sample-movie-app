@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable, Subscription} from 'rxjs';
+import {MovieData} from '../../interfaces/data/movie-data';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import * as movieActions from '../../store/movie/movie.actions';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-page',
@@ -10,7 +16,15 @@ export class SearchPageComponent implements OnInit {
   searchForm: FormGroup;
   showStatus: boolean;
   showErr: boolean;
-  constructor() { }
+
+  isLoading$: Observable<boolean>;
+  movieList$: Observable<MovieData[]>;
+  movieList: MovieData[];
+  selectedMovie: MovieData;
+  movieSubs: Subscription;
+  selectedMovieSubs: Subscription;
+
+  constructor( private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -18,6 +32,17 @@ export class SearchPageComponent implements OnInit {
     });
     this.showErr = false;
     this.showStatus = true;
+
+    this.store.dispatch(new movieActions.GetAllMovies());
+    this.isLoading$ = this.store.select('movie', 'isLoading');
+
+    this.movieList$ = this.store.select('movie', 'movieList');
+    this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+      if (movieList != null){
+        this.movieList = movieList;
+        console.log(movieList['data']['movies']);
+      }
+    });
   }
 
   onSearch(): void{

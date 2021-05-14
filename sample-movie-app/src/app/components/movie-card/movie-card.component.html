@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxFlexFill>
+<div fxLayout="row" fxLayoutAlign="center center" >
 
   <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
 
@@ -9,8 +9,11 @@
            fxLayoutAlign="center center"></div>
 
           <div *ngIf="true" fxLayout="column" fxLayoutAlign="space-between stretch" class="movie-overlay">
-            <div fxLayout="column" style="color: #d4d4d4;padding-top: 10px; font-size: 32px;">
-              <p>Batman <br> <span class="movie-genre">Action</span></p>
+            <div fxLayout="column" style="color: #d4d4d4;padding-top: 10px;font-weight: 500;font-size: 16px;">
+              <p fxFlex>
+                {{movieDetails.title}} <br>
+                <span class="movie-genre">{{movieDetails['genres'][0]}}</span>
+              </p>
             </div>
 
             <div fxLayout="column" fxFlexAlign="space-between center" fxLayoutGap="5px">
@@ -19,7 +22,7 @@
                 <mat-icon class="star-gold" style="color: #F2C94C">star</mat-icon>
               </div>
               <div fxLayout="row" fxLayoutAlign="center center">
-                <p class="logo-caption" style="font-size: 20px; font-weight: bold;margin-bottom: 5px;">{{movieRating}}/10</p>
+                <p class="logo-caption" style="font-size: 20px; font-weight: bold;margin-bottom: 5px;">{{movieDetails['rating']}}/10</p>
               </div>
 
               <!--div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="center center">
@@ -30,7 +33,7 @@
               </div-->
               <div fxLayout="row" fxLayoutAlign="space-between center" style="background-color: #F2C94C" >
                 <div fxFlex>
-                  <p style="text-align: left; margin-bottom: 0px;padding-left: 20px;font-weight: bold;"> 1992</p>
+                  <p style="text-align: left; margin-bottom: 0px;padding-left: 20px;font-weight: bold;">{{movieDetails['year']}}</p>
                 </div>
 
                 <div style="width:10px; height: 10px" fxFlex style="text-align: right">
@@ -49,30 +52,4 @@
 
     </div>
 
-
-
-  <!--div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
-    <mat-card class="mat-elevation-z4" fxLayout="column" fxLayoutAlign="center center">
-      <mat-card-header>
-        <mat-card-title>Himalayan Peaks</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="assets/1200px-Logo-YTS.png" style="width: 100px;">
-      <mat-card-content>
-        <p>
-          The Himalayas is a mountain range in Asia.
-        </p>
-      </mat-card-content>
-      <mat-card-actions fxFlexFill>
-        <div fxLayout="row" fxLayoutAlign="space-between center"  fxFlexFill>
-
-            <p style="text-align: right; margin-bottom: 0px;"> 1992</p>
-
-            <div >
-              <button mat-button fxFlexFill><mat-icon>play_circle_outline</mat-icon></button>
-            </div>
-
-        </div>
-      </mat-card-actions>
-    </mat-card>
-  </div-->
 </div>

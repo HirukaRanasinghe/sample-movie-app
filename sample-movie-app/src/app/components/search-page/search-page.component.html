@@ -44,8 +44,8 @@
   </div>
 </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="margin: 1rem 0rem 0rem 0rem;" fxLayoutGap="16px grid">
-  <app-movie-card *ngFor="let card of [1,2,3,4]"></app-movie-card>
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="16px grid">
+  <app-movie-card *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
 </div>
 <!--div fxLayout="column" fxLayoutAlign="end" class="status-msg">
   <p class="stat-msg" style="text-align: center;color: #F2F2F2 "> <code>Nice</code></p>
