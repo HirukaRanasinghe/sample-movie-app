@@ -16,6 +16,7 @@ export class SearchPageComponent implements OnInit {
   searchForm: FormGroup;
   showStatus: boolean;
   showErr: boolean;
+  isLoad = false;
 
   isLoading$: Observable<boolean>;
   movieList$: Observable<MovieData[]>;
@@ -40,6 +41,7 @@ export class SearchPageComponent implements OnInit {
     this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
       if (movieList != null){
         this.movieList = movieList;
+        this.isLoad = true;
         console.log(movieList['data']['movies']);
       }
     });

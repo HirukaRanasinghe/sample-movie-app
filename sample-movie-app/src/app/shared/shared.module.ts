@@ -8,26 +8,31 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent} from '../components/login/login.component';
 import { SearchPageComponent } from '../components/search-page/search-page.component';
 import { MovieCardComponent } from '../components/movie-card/movie-card.component';
+import {MovieDetailsComponent} from '../components/movie-details/movie-details.component';
+import {AppRoutingModule} from '../app-routing.module';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SearchPageComponent,
-    MovieCardComponent
-  ],
+    declarations: [
+        LoginComponent,
+        SearchPageComponent,
+        MovieCardComponent,
+        MovieDetailsComponent
+    ],
   imports: [
     CommonModule,
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
-  exports: [
-    MaterialModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
-    SearchPageComponent,
-  ]
+    exports: [
+        MaterialModule,
+        HttpClientModule,
+        FlexLayoutModule,
+        ReactiveFormsModule,
+        SearchPageComponent,
+        MovieDetailsComponent,
+    ]
 })
 export class SharedModule { }
