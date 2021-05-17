@@ -33,5 +33,24 @@ export class MovieEffects{
       })
     );
   });
+
+  getMovieById = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(movieActions.GET_MOVIE_BY_ID),
+      switchMap( (data: movieActions.GetMovieById) => {
+        return this.http.get<MovieData>(
+          `https://yts.mx/api/v2/movie_details.json?movie_id=${data.payload}`
+        ).pipe(
+          map( res => {
+            console.log('single movie data: ');
+            return new movieActions.GetMovieByIdComplete(res);
+          }),
+          catchError(() => {
+            return of (new movieActions.GetMovieByIdFailed());
+          })
+        );
+      })
+    );
+  });
 }
 

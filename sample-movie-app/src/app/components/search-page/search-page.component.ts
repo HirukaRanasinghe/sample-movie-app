@@ -21,9 +21,8 @@ export class SearchPageComponent implements OnInit {
   isLoading$: Observable<boolean>;
   movieList$: Observable<MovieData[]>;
   movieList: MovieData[];
-  selectedMovie: MovieData;
   movieSubs: Subscription;
-  selectedMovieSubs: Subscription;
+
 
   constructor( private store: Store<fromApp.AppState>) { }
 

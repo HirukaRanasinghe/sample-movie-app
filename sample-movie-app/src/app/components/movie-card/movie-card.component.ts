@@ -13,16 +13,17 @@ export class MovieCardComponent implements OnInit {
   posterStyle: string;
   showPosterDetails: boolean;
 
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+
     this.posterStyle = `background-image: url(${this.movieDetails['medium_cover_image']});`;
     this.showPosterDetails = false;
   }
-  onViewMoreClick(title: string, details: object): void{
-    this.router.navigateByUrl(`/movie-details/${title}`, { state: details} );
+  onViewMoreClick(id: string, details: object): void{
+    this.router.navigateByUrl(`/movie-details/${id}`);
     console.log('more details');
+
   }
 
 

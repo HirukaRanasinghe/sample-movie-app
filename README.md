@@ -10,4 +10,10 @@ Angular sample  app like yts.
 16/5/2021
 + Configured routing.
 + Created a new component ('movie-details') to show movie details for a single movie. When a user clicks the 'view more' icon on the movie card, it will navigate to this component.
-+ I got the data to movie details component using history.state. But when I refresh the page, the data are gone. So, i need to look for anothe approach.
++ I got the data to movie details component using history.state. But when I refresh the page, the data are gone. So, i need to look for another approach.
+
+17/5/2021
++ Removed usage of state when routing and history.state.
++ When a user press more details button in movie card, he is sent to movie-details component with route parameter 'id', Which is the movie_id of the selected movie.
++ I configured the store to make an API call to get movie details with given movie_id.
++ After I get the data, I set background, title, genres, movie poster and movie description in a card-like layout. Need few tweaks to complete it.
