@@ -22,3 +22,5 @@ Angular sample  app like yts.
 + Configured the ngrx store to Get movies by search term.
 + Added new layout to the movie-details page.
 + Created an interface for Advanced searching, where it takes various search parameters. 
++ Configure the store to search movies by search object, created based on the SearchData interface.
++ Completed quick search function. whenever user search for a movie, it displays the results. 

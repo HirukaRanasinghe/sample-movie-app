@@ -33,7 +33,7 @@ export class SearchPageComponent implements OnInit {
     this.showErr = false;
     this.showStatus = true;
 
-    this.store.dispatch(new movieActions.GetAllMovies());
+    /*this.store.dispatch(new movieActions.GetAllMovies());
     this.isLoading$ = this.store.select('movie', 'isLoading');
 
     this.movieList$ = this.store.select('movie', 'movieList');
@@ -43,14 +43,26 @@ export class SearchPageComponent implements OnInit {
         this.isLoad = true;
         console.log(movieList['data']['movies']);
       }
-    });
+    });*/
   }
 
   onSearch(): void{
     if (this.searchForm.get('search').value !== null){
-      console.log(this.searchForm.get('search').value);
       this.showStatus = false;
       this.showErr = false;
+      console.log(this.searchForm.get('search').value);
+      this.store.dispatch( new movieActions.GetMovieBySearchTerm(this.searchForm.get('search').value));
+      this.isLoading$ = this.store.select('movie', 'isLoading');
+
+      this.movieList$ = this.store.select('movie', 'movieList');
+      this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+        if (movieList != null){
+          this.movieList = movieList;
+          this.isLoad = true;
+          console.log(movieList['data']['movies']);
+        }
+      });
+
     }
     else {
       this.showErr = true;

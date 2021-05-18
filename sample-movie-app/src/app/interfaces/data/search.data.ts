@@ -1,8 +1,9 @@
 export interface SearchData{
-  page: number| undefined;
-  quality: string | undefined;
-  minRating: number | undefined;
-  genre: string| undefined;
-  sortBy: string| undefined;
-  orderBy: string| undefined;
+  query_term: string | null;
+  page: number| null;
+  quality: string | null;
+  minimum_rating: number | null;
+  genre: string| null;
+  sort_by: string| null;
+  order_by: string| null;
 }
