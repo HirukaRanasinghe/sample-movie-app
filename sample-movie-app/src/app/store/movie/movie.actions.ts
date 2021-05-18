@@ -9,6 +9,10 @@ export const GET_MOVIE_BY_ID = '[movie] Get Movie By Id';
 export const GET_MOVIE_BY_ID_COMPLETE = '[movie] Get Movie By Id Complete';
 export const GET_MOVIE_BY_ID_FAILED = '[movie] Get Movie By Id Failed';
 
+export const GET_MOVIE_BY_SEARCH_TERM = '[movie] Gel movie By Search Term';
+export const GET_MOVIE_BY_SEARCH_TERM_COMPLETE = '[movie] Gel movie By Search Term Complete';
+export const GET_MOVIE_BY_SEARCH_TERM_FAILED = '[movie] Gel movie By Search Term Failed';
+
 export class GetAllMovies implements Action{
   readonly type = GET_ALL_MOVIE;
 }
@@ -40,11 +44,30 @@ export class GetMovieByIdFailed implements Action{
   readonly type = GET_MOVIE_BY_ID_FAILED;
 }
 
+export class GetMovieBySearchTerm implements Action{
+  constructor(public payload: string) {
+  }
+  readonly type = GET_MOVIE_BY_SEARCH_TERM;
+}
+
+export class GetMovieBySearchTermComplete implements Action{
+  constructor(public payload: MovieData[]) {
+  }
+  readonly type = GET_MOVIE_BY_SEARCH_TERM_COMPLETE;
+}
+
+export class GetMovieBySearchTermFailed implements Action{
+  readonly type = GET_MOVIE_BY_SEARCH_TERM_FAILED;
+}
+
 export type MovieActions =
   | GetAllMovies
   | GetAllMoviesComplete
   | GetAllMoviesFailed
   | GetMovieById
   | GetMovieByIdComplete
-  | GetMovieByIdFailed;
+  | GetMovieByIdFailed
+  | GetMovieBySearchTerm
+  | GetMovieBySearchTermComplete
+  | GetMovieBySearchTermFailed;
 

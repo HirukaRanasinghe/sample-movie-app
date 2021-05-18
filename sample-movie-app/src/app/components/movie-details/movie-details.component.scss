@@ -1,10 +1,10 @@
 .movie-card{
-  width: 80%;
-  padding: 10px;
+
+  padding: 20px;
   background-size: contain;
   text-align: justify;
-  //background-color: #a9a5a5;
-  backdrop-filter: blur(10px);
+  background-color: #2f2e2e;
+  //backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   /*border-style: solid;
   border-width:3px;
@@ -15,21 +15,28 @@
 
 .movie-background{
   background-size: cover;
-
   backdrop-filter: blur(5px);
 
 }
 
 .horizontal-list-item{
-  float: right;
   display: list-item;
 }
 
 mat-list.list-horizontal {
+  text-align: center;
   padding: 0;
   .mat-list-item {
     display: inline-block;
     height: auto;
     width: auto;
   }
+}
+
+.star-gold{
+  color: orange;
+}
+.icon-text {
+  display: flex;
+  align-items: center;
 }

@@ -41,6 +41,22 @@ export function movieReducer( state = initState, action: movieActions.MovieActio
         ...state,
         isLoading: false,
       };
+    case movieActions.GET_MOVIE_BY_SEARCH_TERM:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case movieActions.GET_MOVIE_BY_SEARCH_TERM_COMPLETE:
+      return {
+        ...state,
+        isLoading: false,
+        movieList: action.payload
+      };
+    case movieActions.GET_MOVIE_BY_SEARCH_TERM_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }

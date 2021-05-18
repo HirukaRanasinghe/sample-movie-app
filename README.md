@@ -17,3 +17,8 @@ Angular sample  app like yts.
 + When a user press more details button in movie card, he is sent to movie-details component with route parameter 'id', Which is the movie_id of the selected movie.
 + I configured the store to make an API call to get movie details with given movie_id.
 + After I get the data, I set background, title, genres, movie poster and movie description in a card-like layout. Need few tweaks to complete it.
+
+18/5/2021
++ Configured the ngrx store to Get movies by search term.
++ Added new layout to the movie-details page.
++ Created an interface for Advanced searching, where it takes various search parameters. 

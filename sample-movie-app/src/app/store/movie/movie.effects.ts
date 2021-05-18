@@ -52,5 +52,24 @@ export class MovieEffects{
       })
     );
   });
+
+  getMovieBySearchTerm = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(movieActions.GET_MOVIE_BY_SEARCH_TERM),
+      switchMap((data: movieActions.GetMovieBySearchTerm) => {
+        return this.http.get<MovieData[]>(
+          `https://yts.mx/api/v2/list_movies.json?query_term=${data.payload}`
+        ).pipe(
+          map( searchData => {
+            console.log('search Data: ', searchData);
+            return new movieActions.GetMovieBySearchTermComplete(searchData);
+          }),
+          catchError(() => {
+            return of(new movieActions.GetMovieBySearchTermFailed());
+          })
+        );
+      })
+    );
+  });
 }
 
