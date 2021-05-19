@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as movieActions from '../../store/movie/movie.actions';
 import { map, startWith } from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -24,7 +25,7 @@ export class SearchPageComponent implements OnInit {
   movieSubs: Subscription;
 
 
-  constructor( private store: Store<fromApp.AppState>) { }
+  constructor( private store: Store<fromApp.AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -33,26 +34,35 @@ export class SearchPageComponent implements OnInit {
     this.showErr = false;
     this.showStatus = true;
 
-    /*this.store.dispatch(new movieActions.GetAllMovies());
+    // this.store.dispatch(new movieActions.GetAllMovies());
     this.isLoading$ = this.store.select('movie', 'isLoading');
 
     this.movieList$ = this.store.select('movie', 'movieList');
     this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+
       if (movieList != null){
         this.movieList = movieList;
         this.isLoad = true;
-        console.log(movieList['data']['movies']);
+        console.log(movieList['data']['movie_count']);
+        if (movieList['data']['movie_count'] === 0){
+          this.showErr = true;
+          this.showStatus = false;
+        }
+        else {
+          this.showErr = false;
+          this.showStatus = false;
+        }
       }
-    });*/
+    });
   }
 
   onSearch(): void{
     if (this.searchForm.get('search').value !== null){
-      this.showStatus = false;
-      this.showErr = false;
       console.log(this.searchForm.get('search').value);
+      this.router.navigate([`search-page/${this.searchForm.get('search').value}`]);
       this.store.dispatch( new movieActions.GetMovieBySearchTerm(this.searchForm.get('search').value));
-      this.isLoading$ = this.store.select('movie', 'isLoading');
+      console.log(this.movieList);
+      /*this.isLoading$ = this.store.select('movie', 'isLoading');
 
       this.movieList$ = this.store.select('movie', 'movieList');
       this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
@@ -61,7 +71,7 @@ export class SearchPageComponent implements OnInit {
           this.isLoad = true;
           console.log(movieList['data']['movies']);
         }
-      });
+      });*/
 
     }
     else {

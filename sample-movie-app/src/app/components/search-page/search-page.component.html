@@ -1,7 +1,36 @@
-<div fxLayout="row">
+<div fxLayout="row" >
   <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
 
-      <mat-toolbar  style="font-size: 16px;">
+      <mat-toolbar>
+          <span>
+              <img src="assets/1200px-Logo-YTS.png" class="form-logo-img" alt="yts logo">
+          </span>
+
+          <span class="example-spacer"></span>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
+            <mat-form-field floatLabel="never">
+              <mat-label><mat-icon>search</mat-icon></mat-label>
+              <input
+                (keyup.enter)="onSearch()"
+                formControlName="search"
+                type="text"
+                matInput>
+            </mat-form-field>
+            <div class="example-button-container">
+              <button type="submit" mat-mini-fab color="accent" aria-label="search button" style="margin-right:10px">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+
+          </form>
+        </div>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+      </mat-toolbar>
+      <!--mat-toolbar  style="font-size: 16px;">
         <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between center">
 
           <div fxLayout="row" fxLayoutAlign="center center">
@@ -9,7 +38,7 @@
           </div>
 
           <div fxLayout="column" fxLayoutAlign="center center">
-            <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" >
+            <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
               <mat-form-field floatLabel="never">
                 <mat-label><mat-icon>search</mat-icon></mat-label>
                 <input
@@ -18,12 +47,23 @@
                   type="text"
                   matInput>
               </mat-form-field>
-              <button mat-raised-button color="accent">LOGOUT</button>
+              <div class="example-button-container">
+                <button type="submit" mat-mini-fab color="accent" aria-label="search button">
+                  <mat-icon>search</mat-icon>
+                </button>
+              </div>
+              <div class="example-button-container">
+                <button mat-mini-fab color="accent" aria-label="logout button">
+                  <mat-icon>logout</mat-icon>
+                </button>
+              </div>
+              <button type="submit" mat-raised-button color="accent"><mat-icon>search</mat-icon></button>
+
             </form>
           </div>
 
         </div>
-      </mat-toolbar>
+      </mat-toolbar-->
 
   </div>
 </div>

@@ -14,6 +14,10 @@ const routes: Routes = [
     component: SearchPageComponent,
   },
   {
+    path: 'search-page/:searchTerm',
+    component: SearchPageComponent,
+  },
+  {
     path: 'movie-details/:movieId',
     component: MovieDetailsComponent,
   },

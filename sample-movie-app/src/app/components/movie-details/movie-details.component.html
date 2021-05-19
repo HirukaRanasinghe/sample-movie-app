@@ -1,12 +1,13 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill [style]="backgroundStyleUrl" class="movie-background">
+
+<div fxLayout="column" fxFlexFill fxLayoutAlign="center center"  [style]="backgroundStyleUrl" class="movie-background">
 
   <div fxLayout="column"
        fxLayoutAlign="center center" class="movie-card" fxLayoutGap="20px">
 
     <div fxLayout="column"  fxLayoutAlign="center center">
-      <h1 class="logo-caption">{{movieDetails['title']}} ({{movieDetails['year']}})</h1>
+      <h1 class="logo-caption" fxFlex>{{movieDetails['title']}} ({{movieDetails['year']}})</h1>
     </div>
-    <div fxLayout="column" fxLayoutAlign="center stretch" style="">
+    <div fxLayout="column" fxLayoutAlign="center stretch">
       <mat-list class="list-horizontal">
         <mat-list-item  *ngFor="let genre of movieDetails['genres']">
           {{genre}}
@@ -18,14 +19,13 @@
          fxLayout.lt-sm="column"
          fxLayoutAlign.lt-sm="center center"
          fxFlex fxLayoutAlign="start start"
-         style="background-color: #2f2e2e;"
-         fxLayoutGap="20px">
+         fxLayoutGap="20px" style="width: 95%">
 
-      <div fxLayout="column" fxLayoutAlign="start" fxFlex>
-        <img src="{{movieDetails['medium_cover_image']}}" >
+      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.lt-sm="center center" style="width: 90%">
+        <img src="{{movieDetails['medium_cover_image']}}" style="background-size: contain">
       </div>
 
-      <div fxLayout="column" fxLayoutAlign="start">
+      <div fxLayout="column" fxLayoutAlign.lt-sm="center center" fxLayoutAlign="start">
         <p class="paragraph">{{movieDetails['description_full']}}</p>
 
         <div fxLayout="column" fxLayoutAlign="center start" fxLayoutAlign.lt-sm="center center">
@@ -39,6 +39,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 
 <!--div fxLayout="column" fxLayoutAlign="center center" class="movie-card" fxLayoutGap="10px">
 

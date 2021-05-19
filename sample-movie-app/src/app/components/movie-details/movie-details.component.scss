@@ -1,6 +1,6 @@
 .movie-card{
-  width: 80%;
   padding: 20px;
+  margin: 20px;
   background-size: contain;
   text-align: justify;
   background-color: #2f2e2e;
@@ -10,13 +10,14 @@
   border-width:3px;
   border-color: #F2F2F2;
   border-radius: 1px;*/
+  box-sizing: border-box;
 
 }
 
 .movie-background{
+
   background-size: cover;
   backdrop-filter: blur(5px);
-
 }
 
 .horizontal-list-item{
@@ -40,3 +41,4 @@ mat-list.list-horizontal {
   display: flex;
   align-items: center;
 }
+
