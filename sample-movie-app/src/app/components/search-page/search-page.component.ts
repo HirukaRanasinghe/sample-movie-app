@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as movieActions from '../../store/movie/movie.actions';
 import {ActivatedRoute, Router} from '@angular/router';
+import {BreakpointModel} from '../../interfaces/ui/breakpoint.model';
 
 @Component({
   selector: 'app-search-page',
@@ -17,6 +18,8 @@ export class SearchPageComponent implements OnInit {
   showStatus: boolean;
   showErr: boolean;
   isLoad = false;
+  isHandset$: Observable<boolean>;
+  uiBreakpoint$: Observable<BreakpointModel>;
 
   isLoading$: Observable<boolean>;
   movieList$: Observable<MovieData[]>;
@@ -27,6 +30,8 @@ export class SearchPageComponent implements OnInit {
   constructor( private store: Store<fromApp.AppState>, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.isHandset$ = this.store.select('ui', 'isHandset');
+    this.uiBreakpoint$ = this.store.select('ui', 'uiBreakpoint');
     this.searchForm = new FormGroup({
         search: new FormControl(null, []),
     });

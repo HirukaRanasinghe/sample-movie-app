@@ -1,1 +1,84 @@
-<p>advanced-search works!</p>
+<div fxLayout="column" fxLayoutAlign="start center" fxFlexFill >
+
+    <form
+      fxLayout="column" fxLayoutAlign="center stretch" class="search-card"
+      [formGroup]="advancedSearchForm" (ngSubmit)="onSubmit()"
+      style="margin-top:20px;"
+       fxLayoutGap="20px">
+
+      <div fxLayout="column" fxLayoutAlign="center stretch" >
+        <mat-form-field fxFlex>
+          <mat-label>Search term: </mat-label>
+          <input
+            formControlName="queryTermInput"
+            type="text"
+            placeholder="Search Here"
+            matInput >
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center stretch" fxFlex>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.lt-sm="column" fxLayoutGap="20px">
+
+            <mat-form-field fxFlex>
+              <mat-label>Quality</mat-label>
+              <mat-select formControlName="qualityInput">
+                <mat-option *ngFor="let quality of qualities" [value]="quality">
+                  {{quality}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex >
+              <mat-label>Genre</mat-label>
+              <mat-select formControlName="genreInput">
+                <mat-option *ngFor="let quality of qualities" [value]="quality">
+                  {{quality}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.lt-sm="column" fxLayoutGap="20px">
+
+          <mat-form-field fxFlex>
+            <mat-label>Order by</mat-label>
+            <mat-select formControlName="orderBy">
+              <mat-option *ngFor="let order of orderBy" [value]="order">
+                {{order}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+            <mat-form-field fxFlex>
+              <mat-label>Sort by</mat-label>
+              <mat-select formControlName="sortBy">
+                <mat-option *ngFor="let sort of sortBy" [value]="sort">
+                  {{sort}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayout.lt-sm="column" fxLayoutGap="20px">
+          <mat-form-field  >
+            <mat-label>Rating</mat-label>
+            <input
+              formControlName="minRatingInput"
+              type="text"
+              placeholder="Search Here"
+              matInput >
+          </mat-form-field>
+
+
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button type="submit" mat-raised-button color="accent"><mat-icon>search</mat-icon> Search</button>
+      </div>
+
+    </form>
+
+</div>

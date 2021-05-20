@@ -19,19 +19,29 @@
          fxLayout.lt-sm="column"
          fxLayoutAlign.lt-sm="center center"
          fxFlex fxLayoutAlign="start start"
-         fxLayoutGap="20px">
-      <div fxLayout="column" style="box-sizing: border-box;width: 35%; height: 60%">
-        <img src="{{movieDetails['medium_cover_image']}}" style="background-size: contain;">
+         fxLayoutGap="20px"
+    style="box-sizing: border-box">
+      <div fxLayout="column" style="box-sizing: border-box;max-width:200px; max-height:315px;width: 40%; height: 70%;">
+        <img src="{{movieDetails['medium_cover_image']}}" >
       </div>
 
       <div fxLayout="column" fxLayoutAlign.lt-sm="center center" fxLayoutAlign="start">
-        <p class="paragraph">{{movieDetails['description_intro']}}</p>
+        <p class="paragraph" style="padding: 20px">{{movieDetails['description_intro']}}</p>
 
-        <div fxLayout="column" fxLayoutAlign="center start" fxLayoutAlign.lt-sm="center center">
+        <div fxLayout="column" fxLayoutAlign="center start" fxLayoutAlign.lt-sm="center center" fxLayoutGap="10px">
           <div class="icon-text">
             <mat-icon class="star-gold">star</mat-icon>
-            <span class="paragraph">{{movieDetails['rating']}}/10</span>
+            <span class="paragraph">&nbsp;{{movieDetails['rating']}}/10</span>
+
+
           </div>
+          <div fxLayout="row">
+            <button *ngFor="let torrent of movieDetails['torrents']"
+                    mat-button color="accent" aria-label="Download button">
+              <mat-icon>file_download</mat-icon> {{torrent['quality']}}
+            </button>
+          </div>
+
         </div>
 
       </div>

@@ -76,11 +76,11 @@ export class MovieEffects{
     return this.actions$.pipe(
       ofType(movieActions.GET_MOVIE_BY_SEARCH_OBJECT),
       switchMap((data: movieActions.GetMovieBySearchObject) => {
-        let searchUrl = 'https://yts.mx/api/v2/list_movies.json';
+        let searchUrl = 'https://yts.mx/api/v2/list_movies.json?';
         const searchObj = data.payload;
         for (const item in searchObj){
           if (searchObj[item] !== null){
-            const appendStr = `?${item}=${searchObj[item]}`;
+            const appendStr = `&${item}=${searchObj[item]}`;
             searchUrl = searchUrl.concat(appendStr);
           }
         }

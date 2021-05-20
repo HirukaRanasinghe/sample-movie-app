@@ -31,3 +31,8 @@ Angular sample  app like yts.
 
 20/05/2021
 + Created a component to do advanced searching.
++ Make the UI using flexLayout.
+
+21/05/21
++ Used reactiveForms and its Validators to build the advanced search form.
++ used mat-select and mat-option to make the dropdown lists in the search form.
