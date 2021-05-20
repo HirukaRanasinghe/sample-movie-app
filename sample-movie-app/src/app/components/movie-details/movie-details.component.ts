@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
-import {ActivatedRoute, Navigation, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import * as fromApp from '../../store/app.reducer';
 import * as movieActions from '../../store/movie/movie.actions';
 import {Store} from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+
 
 
 @Component({
@@ -21,7 +21,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   movieDetails: object;
   movieSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private store: Store<fromApp.AppState>, private sanitizer: DomSanitizer) {
+  constructor(private activatedRoute: ActivatedRoute, private store: Store<fromApp.AppState>) {
 
 
   }
@@ -39,7 +39,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.movieDetails = movieDesc['data']['movie'];
         console.log(this.movieDetails);
         this.backgroundStyleUrl = `background-image: url(${this.movieDetails['background_image']}),linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 1));`;
-
       }
     });
   }

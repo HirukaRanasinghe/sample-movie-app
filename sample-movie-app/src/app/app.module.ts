@@ -13,10 +13,12 @@ import {reducers, metaReducers} from './store/app.reducer';
 import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
+import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvancedSearchComponent
   ],
   imports: [
     BrowserModule,

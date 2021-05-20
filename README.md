@@ -24,3 +24,10 @@ Angular sample  app like yts.
 + Created an interface for Advanced searching, where it takes various search parameters. 
 + Configure the store to search movies by search object, created based on the SearchData interface.
 + Completed quick search function. whenever user search for a movie, it displays the results. 
+
+19/05/2021
++ When a user search for a movie, he redirects to the search component with a query parameter of the search term. So, when he goes to a search result item, refreshes it and comes back to search component, an API call with search term is again sent to get the search data.
++ Minor tweaks to the movie-details UI is added.
+
+20/05/2021
++ Created a component to do advanced searching.

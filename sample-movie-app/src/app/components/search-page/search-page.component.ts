@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as movieActions from '../../store/movie/movie.actions';
-import { map, startWith } from 'rxjs/operators';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -25,7 +24,7 @@ export class SearchPageComponent implements OnInit {
   movieSubs: Subscription;
 
 
-  constructor( private store: Store<fromApp.AppState>, private router: Router) { }
+  constructor( private store: Store<fromApp.AppState>, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -34,6 +33,12 @@ export class SearchPageComponent implements OnInit {
     this.showErr = false;
     this.showStatus = true;
 
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params['params']['searchTerm'] != null){
+        console.log(params);
+        this.store.dispatch(new movieActions.GetMovieBySearchTerm(params['params']['searchTerm']));
+      }
+    });
     // this.store.dispatch(new movieActions.GetAllMovies());
     this.isLoading$ = this.store.select('movie', 'isLoading');
 

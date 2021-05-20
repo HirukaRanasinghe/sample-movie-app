@@ -2,7 +2,7 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="center center"  [style]="backgroundStyleUrl" class="movie-background">
 
   <div fxLayout="column"
-       fxLayoutAlign="center center" class="movie-card" fxLayoutGap="20px">
+       fxLayoutAlign="center center" class="movie-card" fxLayoutGap="20px" >
 
     <div fxLayout="column"  fxLayoutAlign="center center">
       <h1 class="logo-caption" fxFlex>{{movieDetails['title']}} ({{movieDetails['year']}})</h1>
@@ -19,14 +19,13 @@
          fxLayout.lt-sm="column"
          fxLayoutAlign.lt-sm="center center"
          fxFlex fxLayoutAlign="start start"
-         fxLayoutGap="20px" style="width: 95%">
-
-      <div fxLayout="column" fxLayoutAlign="start center" fxLayoutAlign.lt-sm="center center" style="width: 90%">
-        <img src="{{movieDetails['medium_cover_image']}}" style="background-size: contain">
+         fxLayoutGap="20px">
+      <div fxLayout="column" style="box-sizing: border-box;width: 35%; height: 60%">
+        <img src="{{movieDetails['medium_cover_image']}}" style="background-size: contain;">
       </div>
 
       <div fxLayout="column" fxLayoutAlign.lt-sm="center center" fxLayoutAlign="start">
-        <p class="paragraph">{{movieDetails['description_full']}}</p>
+        <p class="paragraph">{{movieDetails['description_intro']}}</p>
 
         <div fxLayout="column" fxLayoutAlign="center start" fxLayoutAlign.lt-sm="center center">
           <div class="icon-text">
@@ -40,46 +39,3 @@
   </div>
 </div>
 
-
-
-
-
-<!--div fxLayout="column" fxLayoutAlign="center center" class="movie-card" fxLayoutGap="10px">
-
-  <div fxFlexAlign="center" >
-    <h1 class="logo-caption">{{movieDetails['title']}}</h1>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="" fxFlexFill>
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <img src="{{movieDetails['medium_cover_image']}}" fxFlex>
-    </div>
-  </div>
-</div-->
-
-<!--div fxFlexFill
-      gdAreas="header header | side content | footer footer"
-      gdGap="16px"
-      gdRows="auto auto auto">
-      <div gdArea="header" fxFlexAlign="center center">
-        <h1 class="logo-caption" fxFlex fxFlexAlign="center center">{{movieDetails['title']}}</h1>
-        <div fxLayout="column" fxFlexAlign="center center">
-          <br>
-          <mat-list class="list-horizontal">
-            <mat-list-item  *ngFor="let genre of movieDetails['genres']">
-              {{genre}}
-              <mat-divider [vertical]="true"></mat-divider>
-            </mat-list-item>
-          </mat-list>
-        </div>
-
-      </div>
-      <div gdArea="side" >
-        <img src="{{movieDetails['medium_cover_image']}}" >
-      </div>
-      <div gdArea="content" >
-        <em class="logo-caption">{{movieDetails['description_full']}}</em>
-      </div>
-      <div gdArea="footer">
-        Footer
-      </div>
-    </div-->
