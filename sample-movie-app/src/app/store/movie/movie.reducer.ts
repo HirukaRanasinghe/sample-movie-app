@@ -57,7 +57,7 @@ export function movieReducer( state = initState, action: movieActions.MovieActio
         ...state,
         isLoading: false,
       };
-    case movieActions.GET_MOVIE_BY_SEARCH_OBJECT:
+    /*case movieActions.GET_MOVIE_BY_SEARCH_OBJECT:
       return {
         ...state,
         isLoading: true,
@@ -72,7 +72,7 @@ export function movieReducer( state = initState, action: movieActions.MovieActio
       return {
         ...state,
         isLoading: false
-      };
+      };*/
     default:
       return state;
   }

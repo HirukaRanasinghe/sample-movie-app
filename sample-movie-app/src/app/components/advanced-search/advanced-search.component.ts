@@ -1,49 +1,167 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
+import { SearchData } from '../../interfaces/data/search.data';
+import * as movieActions from '../../store/movie/movie.actions';
+import * as fromApp from '../../store/app.reducer';
+import { Store } from '@ngrx/store';
+import {Observable, Subscription} from 'rxjs';
+import {MovieData} from '../../interfaces/data/movie-data';
+interface KeyVal {
+  viewValue: string;
+  value: string;
+}
 @Component({
   selector: 'app-advanced-search',
   templateUrl: './advanced-search.component.html',
   styleUrls: ['./advanced-search.component.scss']
 })
+
+
 export class AdvancedSearchComponent implements OnInit {
   advancedSearchForm: FormGroup;
   queryTerm: string | null;
   page: number| null;
   qualities: string[] = ['All', '720p', '1080p', '2160p', '3D'];
   minRating: number | null;
-  genre: string| null;
-  sortBy: string[] = ['title', 'year', 'rating', 'peers', 'seeds', 'download_count', 'like_count', 'date_added'];
-  orderBy: string[] = ['asc', 'desc'];
+  genres: KeyVal[] = [
+    {viewValue: 'Action', value: 'action'},
+    {viewValue: 'Adventure', value: 'adventure'},
+    {viewValue: 'Animation', value: 'animation'},
+    {viewValue: 'Biography', value: 'biography'},
+    {viewValue: 'Comedy', value: 'comedy'},
+    {viewValue: 'Crime', value: 'crime'},
+    {viewValue: 'Documentary', value: 'documentary'},
+    {viewValue: 'Drama', value: 'drama'},
+    {viewValue: 'Family', value: 'family'},
+    {viewValue: 'Fantasy', value: 'fantasy'},
+    {viewValue: 'Film Noir', value: 'film noir'},
+    {viewValue: 'History', value: 'history'},
+    {viewValue: 'Horror', value: 'horror'},
+    {viewValue: 'Music', value: 'music'},
+    {viewValue: 'Musical', value: 'musical'},
+    {viewValue: 'Mystery', value: 'mystery'},
+    {viewValue: 'Romance', value: 'romance'},
+    {viewValue: 'Sci-Fi', value: 'sci-fi'},
+    {viewValue: 'Short Film', value: 'short film'},
+    {viewValue: 'Sport', value: 'sport'},
+    {viewValue: 'Superhero', value: 'superhero'},
+    {viewValue: 'Thriller', value: 'thriller'},
+    {viewValue: 'War', value: 'war'},
+    {viewValue: 'Western', value: 'western'}
+  ];
+  sortBy: KeyVal[] = [
+    {viewValue: 'Title' , value: 'title'},
+    {viewValue: 'Year' , value: 'year'},
+    {viewValue: 'Rating' , value: 'rating'},
+    {viewValue: 'Peers' , value: 'peers'},
+    {viewValue: 'Seeds' , value: 'seeds'},
+    {viewValue: 'Download Count' , value: 'download_count'},
+    {viewValue: 'Like Count' , value: 'like_count'},
+    {viewValue: 'Date Added' , value: 'date_added'},
+  ];
+  orderBy: KeyVal[] = [
+    {value: 'asc', viewValue: 'Ascending'},
+    {value: 'desc', viewValue: 'Descending'}
+    ];
+  showStatus: boolean;
+  showErr: boolean;
+  isLoad = false;
+  isLoading$: Observable<boolean>;
+  movieList$: Observable<MovieData[]>;
+  movieList: MovieData[];
+  movieSubs: Subscription;
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
+    this.showStatus = true;
+    this.showErr = false;
+
+    this.isLoading$ = this.store.select('movie', 'isLoading');
+    this.movieList$ = this.store.select('movie', 'movieList');
+    this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+
+      if (movieList != null){
+        this.movieList = movieList;
+        this.isLoad = true;
+        console.log(movieList['data']['movie_count']);
+        if (movieList['data']['movie_count'] === 0){
+          this.showErr = true;
+          this.showStatus = false;
+        }
+        else {
+          this.showErr = false;
+          this.showStatus = false;
+        }
+      }
+    });
+
     this.advancedSearchForm = new FormGroup({
       queryTermInput: new FormControl(
         null,
         []),
       qualityInput: new FormControl(
         null,
-        [Validators.pattern('(720p | 1080p | 2160p | 3D | All)')]),
+        []),
       minRatingInput: new FormControl(
         null,
-        [Validators.min(0), , Validators.max(9)]),
+        [Validators.min(0) , Validators.max(9)]),
       genreInput: new FormControl(
         null,
         []),
       sortBy: new FormControl(
         null,
-        [Validators.pattern('(title | year | rating | peers | seeds | download_count | like_count | date_added)')]),
+        []),
       orderBy: new FormControl(
         null,
-        [Validators.pattern('(asc | desc)')])
+        [])
 
   });
   }
 
   onSubmit(): void{
-    console.log(JSON.stringify(this.advancedSearchForm.value));
+    if (this.advancedSearchForm.valid){
+      this.showErr = false;
+      this.showStatus = false;
+      const searchDataObj: SearchData = {
+        query_term: null,
+        page: null,
+        quality: null,
+        minimum_rating: null,
+        genre: null,
+        sort_by: null,
+        order_by: null,
+      };
+
+      const searchVals: object = this.advancedSearchForm.value;
+
+      for (const value in searchVals){
+        if (searchVals[value] != null){
+          switch (value){
+            case 'queryTermInput':
+              searchDataObj.query_term = searchVals[value];
+              break;
+            case 'qualityInput':
+              searchDataObj.quality = searchVals[value];
+              break;
+            case 'minRatingInput':
+              searchDataObj.minimum_rating = searchVals[value];
+              break;
+            case 'genreInput':
+              searchDataObj.genre = searchVals[value];
+              break;
+            case 'sortBy':
+              searchDataObj.sort_by = searchVals[value];
+              break;
+            case 'orderBy':
+              searchDataObj.order_by = searchVals[value];
+              break;
+          }
+
+        }
+      }
+      this.store.dispatch(new movieActions.GetMovieBySearchTerm(searchDataObj));
+    }
   }
 
 }

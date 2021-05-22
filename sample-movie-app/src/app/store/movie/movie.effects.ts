@@ -5,6 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as movieActions from './movie.actions';
 import { MovieData } from '../../interfaces/data/movie-data';
 import { of } from 'rxjs';
+import {SearchData} from '../../interfaces/data/search.data';
 
 @Injectable()
 
@@ -57,8 +58,23 @@ export class MovieEffects{
     return this.actions$.pipe(
       ofType(movieActions.GET_MOVIE_BY_SEARCH_TERM),
       switchMap((data: movieActions.GetMovieBySearchTerm) => {
+        let searchUrl: string;
+        if (typeof data.payload === 'string'){
+          searchUrl = `https://yts.mx/api/v2/list_movies.json?query_term=${data.payload}`;
+        }
+        else{
+          searchUrl = `https://yts.mx/api/v2/list_movies.json?`;
+          const searchObj: SearchData = data.payload;
+          for (const item in searchObj){
+            if (searchObj[item] !== null){
+              const appendStr = `&${item}=${searchObj[item]}`;
+              searchUrl = searchUrl.concat(appendStr);
+            }
+          }
+          console.log('url is: ', searchUrl);
+        }
         return this.http.get<MovieData[]>(
-          `https://yts.mx/api/v2/list_movies.json?query_term=${data.payload}`
+          searchUrl
         ).pipe(
           map( searchData => {
             console.log('search Data: ', searchData);
@@ -72,7 +88,7 @@ export class MovieEffects{
     );
   });
 
-  getMovieBySearchObj = createEffect(() => {
+  /*getMovieBySearchObj = createEffect(() => {
     return this.actions$.pipe(
       ofType(movieActions.GET_MOVIE_BY_SEARCH_OBJECT),
       switchMap((data: movieActions.GetMovieBySearchObject) => {
@@ -96,6 +112,6 @@ export class MovieEffects{
         );
       })
     );
-  });
+  });*/
 }
 

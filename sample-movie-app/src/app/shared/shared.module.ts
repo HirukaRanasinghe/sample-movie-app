@@ -33,6 +33,7 @@ import {AppRoutingModule} from '../app-routing.module';
         ReactiveFormsModule,
         SearchPageComponent,
         MovieDetailsComponent,
+        MovieCardComponent,
     ]
 })
 export class SharedModule { }

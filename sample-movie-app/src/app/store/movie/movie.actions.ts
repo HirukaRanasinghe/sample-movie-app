@@ -14,9 +14,9 @@ export const GET_MOVIE_BY_SEARCH_TERM = '[movie] Get movie By Search Term';
 export const GET_MOVIE_BY_SEARCH_TERM_COMPLETE = '[movie] Get movie By Search Term Complete';
 export const GET_MOVIE_BY_SEARCH_TERM_FAILED = '[movie] Get movie By Search Term Failed';
 
-export const GET_MOVIE_BY_SEARCH_OBJECT = '[movie] Get movie By Search Object';
+/*export const GET_MOVIE_BY_SEARCH_OBJECT = '[movie] Get movie By Search Object';
 export const GET_MOVIE_BY_SEARCH_OBJECT_COMPLETE = '[movie] Get movie By Search Object Complete';
-export const GET_MOVIE_BY_SEARCH_OBJECT_FAILED = '[movie] Get movie By Search Object Failed';
+export const GET_MOVIE_BY_SEARCH_OBJECT_FAILED = '[movie] Get movie By Search Object Failed';*/
 
 export class GetAllMovies implements Action{
   readonly type = GET_ALL_MOVIE;
@@ -35,7 +35,7 @@ export class GetAllMoviesFailed implements Action{
 
 export class GetMovieById implements Action{
   readonly type = GET_MOVIE_BY_ID;
-  constructor(public payload: string) {
+  constructor(public payload: string | SearchData) {
   }
 }
 
@@ -50,7 +50,7 @@ export class GetMovieByIdFailed implements Action{
 }
 
 export class GetMovieBySearchTerm implements Action{
-  constructor(public payload: string) {
+  constructor(public payload: string| SearchData) {
   }
   readonly type = GET_MOVIE_BY_SEARCH_TERM;
 }
@@ -65,7 +65,7 @@ export class GetMovieBySearchTermFailed implements Action{
   readonly type = GET_MOVIE_BY_SEARCH_TERM_FAILED;
 }
 
-export class GetMovieBySearchObject implements Action{
+/*export class GetMovieBySearchObject implements Action{
   constructor(public payload: SearchData) {
   }
   readonly type = GET_MOVIE_BY_SEARCH_OBJECT;
@@ -80,7 +80,7 @@ export class GetMovieBySearchObjectComplete implements Action{
 export class GetMovieBySearchObjectFailed implements Action{
   readonly type = GET_MOVIE_BY_SEARCH_OBJECT_FAILED;
 }
-
+*/
 export type MovieActions =
   | GetAllMovies
   | GetAllMoviesComplete
@@ -91,7 +91,5 @@ export type MovieActions =
   | GetMovieBySearchTerm
   | GetMovieBySearchTermComplete
   | GetMovieBySearchTermFailed
-  | GetMovieBySearchObject
-  | GetMovieBySearchObjectComplete
-  | GetMovieBySearchObjectFailed;
+;
 
