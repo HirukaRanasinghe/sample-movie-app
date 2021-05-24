@@ -4,4 +4,5 @@ export interface MovieState {
   isLoading: boolean;
   movieList: MovieData[];
   selectedMovie: MovieData;
+  nextPage?: MovieData;
 }

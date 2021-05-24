@@ -14,11 +14,13 @@ import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdvancedSearchComponent
+    AdvancedSearchComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import * as fromApp from '../../store/app.reducer';
 import { Store } from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
+import {PageEvent} from '@angular/material/paginator';
 interface KeyVal {
   viewValue: string;
   value: string;
@@ -71,6 +72,8 @@ export class AdvancedSearchComponent implements OnInit {
   movieList: MovieData[];
   movieSubs: Subscription;
 
+  pageEvent: PageEvent;
+
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
@@ -123,6 +126,7 @@ export class AdvancedSearchComponent implements OnInit {
     if (this.advancedSearchForm.valid){
       this.showErr = false;
       this.showStatus = false;
+
       const searchDataObj: SearchData = {
         query_term: null,
         page: null,
@@ -132,7 +136,6 @@ export class AdvancedSearchComponent implements OnInit {
         sort_by: null,
         order_by: null,
       };
-
       const searchVals: object = this.advancedSearchForm.value;
 
       for (const value in searchVals){
@@ -157,11 +160,77 @@ export class AdvancedSearchComponent implements OnInit {
               searchDataObj.order_by = searchVals[value];
               break;
           }
-
         }
       }
       this.store.dispatch(new movieActions.GetMovieBySearchTerm(searchDataObj));
     }
   }
 
+  onPageChange($event): void{
+    this.pageEvent = $event;
+    const pageNo = this.pageEvent.pageIndex + 1;
+    console.log(pageNo);
+
+    const searchVals: object = this.advancedSearchForm.value;
+
+    const nxtPage: SearchData = this.convertToSearchDataObj(searchVals);
+    nxtPage.page = pageNo;
+    this.store.dispatch(new movieActions.GetMovieBySearchTerm(nxtPage));
+    this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+
+      if (movieList != null){
+        this.movieList = movieList;
+        this.isLoad = true;
+        console.log(movieList['data']['movie_count']);
+        if (movieList['data']['movie_count'] === 0){
+          console.log('works');
+          this.showErr = true;
+          this.showStatus = false;
+        }
+        else {
+          this.showErr = false;
+          this.showStatus = false;
+        }
+      }
+    });
+
+  }
+
+  // Convert form values into a SearchData object
+  convertToSearchDataObj(data: object): SearchData{
+    const searchData: SearchData = {
+      query_term: null,
+      page: null,
+      quality: null,
+      minimum_rating: null,
+      genre: null,
+      sort_by: null,
+      order_by: null,
+    };
+    for (const value in data){
+      if (data[value] != null){
+        switch (value){
+          case 'queryTermInput':
+            searchData.query_term = data[value];
+            break;
+          case 'qualityInput':
+            searchData.quality = data[value];
+            break;
+          case 'minRatingInput':
+            searchData.minimum_rating = data[value];
+            break;
+          case 'genreInput':
+            searchData.genre = data[value];
+            break;
+          case 'sortBy':
+            searchData.sort_by = data[value];
+            break;
+          case 'orderBy':
+            searchData.order_by = data[value];
+            break;
+        }
+      }
+    }
+    return searchData;
+  }
 }

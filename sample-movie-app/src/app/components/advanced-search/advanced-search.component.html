@@ -5,7 +5,7 @@
       [formGroup]="advancedSearchForm" (ngSubmit)="onSubmit()"
       style="margin-top:20px;"
        fxLayoutGap="20px">
-
+      <h1 class="paragraph">Advanced Search</h1>
       <div fxLayout="column" fxLayoutAlign="center stretch" >
         <mat-form-field fxFlex>
           <mat-label>Search term: </mat-label>
@@ -108,7 +108,16 @@
       fxFlex.lt-md="0 1 calc(50% - 32px)"
       fxFlex.lt-sm="100%"
       *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
+
   </div>
+
+  <div *ngIf="isLoad" fxLayout="column" fxFlex >
+    <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
+
+    </app-pagination>
+
+  </div>
+
 
 </div>
 

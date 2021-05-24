@@ -36,10 +36,10 @@
 
           </div>
           <div fxLayout="row">
-            <button *ngFor="let torrent of movieDetails['torrents']"
+            <a *ngFor="let torrent of movieDetails['torrents']" [href]="torrent['url']"
                     mat-button color="accent" aria-label="Download button">
               <mat-icon>file_download</mat-icon> {{torrent['quality']}}
-            </button>
+            </a>
           </div>
 
         </div>

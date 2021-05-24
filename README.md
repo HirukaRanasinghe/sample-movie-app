@@ -37,3 +37,7 @@ Angular sample  app like yts.
 + Used reactiveForms and its Validators to build the advanced search form.
 + used mat-select and mat-option to make the dropdown lists in the search form.
 + Advanced search form is working properly. Still needs to configure routing.
+
+24/05/21
++ I created another component for server side pagination.
++ Implemented it in advanced searching and it works fine. Need to add it to quick search too. May need to redesign search page.
