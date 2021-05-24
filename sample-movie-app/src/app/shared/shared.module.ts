@@ -12,6 +12,7 @@ import {MovieDetailsComponent} from '../components/movie-details/movie-details.c
 import {AppRoutingModule} from '../app-routing.module';
 import {PaginationComponent} from '../components/pagination/pagination.component';
 import {AdvancedSearchComponent} from '../components/advanced-search/advanced-search.component';
+import {LandingPageComponent} from '../components/landing-page/landing-page.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {AdvancedSearchComponent} from '../components/advanced-search/advanced-se
       MovieCardComponent,
       MovieDetailsComponent,
       AdvancedSearchComponent,
-      PaginationComponent
+      PaginationComponent,
+      LandingPageComponent,
     ],
     imports: [
         CommonModule,
@@ -30,14 +32,15 @@ import {AdvancedSearchComponent} from '../components/advanced-search/advanced-se
         ReactiveFormsModule,
         AppRoutingModule,
     ],
-    exports: [
-        MaterialModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        ReactiveFormsModule,
-        SearchPageComponent,
-        MovieDetailsComponent,
-        MovieCardComponent,
-    ]
+  exports: [
+    MaterialModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    SearchPageComponent,
+    MovieDetailsComponent,
+    MovieCardComponent,
+    LoginComponent,
+  ]
 })
 export class SharedModule { }

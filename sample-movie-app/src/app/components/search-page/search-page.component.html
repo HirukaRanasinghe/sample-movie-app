@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<!--div fxLayout="row">
   <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
 
       <mat-toolbar>
@@ -29,7 +29,7 @@
             <mat-icon>menu</mat-icon>
           </button>
 
-      </mat-toolbar>
+      </mat-toolbar-->
       <!--mat-toolbar  style="font-size: 16px;">
         <div fxLayout="row" fxFlexFill fxLayoutAlign="space-between center">
 
@@ -65,8 +65,8 @@
         </div>
       </mat-toolbar-->
 
-  </div>
-</div>
+  <!--/div>
+</div-->
 
 
 <div fxLayout="column" fxLayoutAlign="center">
@@ -96,7 +96,6 @@
 
 <div *ngIf="isLoad" fxLayout="column" >
   <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
-
   </app-pagination>
 </div>
 

@@ -21,7 +21,7 @@ export class MovieCardComponent implements OnInit {
     this.showPosterDetails = false;
   }
   onViewMoreClick(id: string, details: object): void{
-    this.router.navigateByUrl(`/movie-details/${id}`);
+    this.router.navigateByUrl(`search-page/movie-details/${id}`);
     console.log('more details');
 
   }

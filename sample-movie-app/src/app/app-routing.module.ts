@@ -4,6 +4,7 @@ import {MovieDetailsComponent} from './components/movie-details/movie-details.co
 import {LoginComponent} from './components/login/login.component';
 import {SearchPageComponent} from './components/search-page/search-page.component';
 import {AdvancedSearchComponent} from './components/advanced-search/advanced-search.component';
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
@@ -12,20 +13,27 @@ const routes: Routes = [
   },
   {
     path: 'search-page',
-    component: SearchPageComponent,
+    component: LandingPageComponent,
+    children: [
+      {
+        path: 'search-page/:searchTerm',
+        component: SearchPageComponent,
+      },
+      {
+        path: '',
+        component: SearchPageComponent,
+      },
+      {
+        path: 'advanced-search',
+        component: AdvancedSearchComponent,
+      },
+      {
+        path: 'movie-details/:movieId',
+        component: MovieDetailsComponent,
+      },
+    ]
   },
-  {
-    path: 'advanced-search',
-    component: AdvancedSearchComponent,
-  },
-  {
-    path: 'search-page/:searchTerm',
-    component: SearchPageComponent,
-  },
-  {
-    path: 'movie-details/:movieId',
-    component: MovieDetailsComponent,
-  },
+
 ];
 
 @NgModule({

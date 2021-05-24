@@ -42,3 +42,7 @@ Angular sample  app like yts.
 + I created another component for server side pagination.
 + Implemented it in advanced searching and it works fine. Need to add it to quick search too. May need to redesign search page.
 + Paginator is added to the SearchComponent.
+
++ Created a new component LandingPageComponent which has the basic layout of the app. 
++ Configured responsiveness using the ngrx store.
++ Reconfigured routes accordingly. But there are still some bugs are there.
