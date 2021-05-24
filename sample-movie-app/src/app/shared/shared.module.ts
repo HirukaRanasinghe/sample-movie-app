@@ -10,22 +10,26 @@ import { SearchPageComponent } from '../components/search-page/search-page.compo
 import { MovieCardComponent } from '../components/movie-card/movie-card.component';
 import {MovieDetailsComponent} from '../components/movie-details/movie-details.component';
 import {AppRoutingModule} from '../app-routing.module';
+import {PaginationComponent} from '../components/pagination/pagination.component';
+import {AdvancedSearchComponent} from '../components/advanced-search/advanced-search.component';
 
 @NgModule({
     declarations: [
-        LoginComponent,
-        SearchPageComponent,
-        MovieCardComponent,
-        MovieDetailsComponent
+      LoginComponent,
+      SearchPageComponent,
+      MovieCardComponent,
+      MovieDetailsComponent,
+      AdvancedSearchComponent,
+      PaginationComponent
     ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    MaterialModule,
-    FlexLayoutModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        MaterialModule,
+        FlexLayoutModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+    ],
     exports: [
         MaterialModule,
         HttpClientModule,

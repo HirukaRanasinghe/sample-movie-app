@@ -17,28 +17,26 @@ import { AdvancedSearchComponent } from './components/advanced-search/advanced-s
 import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdvancedSearchComponent,
-    PaginationComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
-    EffectsModule.forRoot([...Effects]),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        SharedModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true
+            }
+        }),
+        EffectsModule.forRoot([...Effects]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

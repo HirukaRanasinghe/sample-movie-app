@@ -11,7 +11,7 @@ export class PaginationComponent implements OnInit {
   @Input() movieList: MovieData;
   @Output() outEvent: EventEmitter<PageEvent> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
@@ -19,4 +19,5 @@ export class PaginationComponent implements OnInit {
   onPageChange($event): void{
     this.outEvent.emit($event);
   }
+
 }

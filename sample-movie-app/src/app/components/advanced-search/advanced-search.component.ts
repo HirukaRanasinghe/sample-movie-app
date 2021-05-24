@@ -126,42 +126,8 @@ export class AdvancedSearchComponent implements OnInit {
     if (this.advancedSearchForm.valid){
       this.showErr = false;
       this.showStatus = false;
-
-      const searchDataObj: SearchData = {
-        query_term: null,
-        page: null,
-        quality: null,
-        minimum_rating: null,
-        genre: null,
-        sort_by: null,
-        order_by: null,
-      };
       const searchVals: object = this.advancedSearchForm.value;
-
-      for (const value in searchVals){
-        if (searchVals[value] != null){
-          switch (value){
-            case 'queryTermInput':
-              searchDataObj.query_term = searchVals[value];
-              break;
-            case 'qualityInput':
-              searchDataObj.quality = searchVals[value];
-              break;
-            case 'minRatingInput':
-              searchDataObj.minimum_rating = searchVals[value];
-              break;
-            case 'genreInput':
-              searchDataObj.genre = searchVals[value];
-              break;
-            case 'sortBy':
-              searchDataObj.sort_by = searchVals[value];
-              break;
-            case 'orderBy':
-              searchDataObj.order_by = searchVals[value];
-              break;
-          }
-        }
-      }
+      const searchDataObj: SearchData = this.convertToSearchDataObj(searchVals);
       this.store.dispatch(new movieActions.GetMovieBySearchTerm(searchDataObj));
     }
   }
@@ -176,7 +142,7 @@ export class AdvancedSearchComponent implements OnInit {
     const nxtPage: SearchData = this.convertToSearchDataObj(searchVals);
     nxtPage.page = pageNo;
     this.store.dispatch(new movieActions.GetMovieBySearchTerm(nxtPage));
-    this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
+    /*this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
 
       if (movieList != null){
         this.movieList = movieList;
@@ -192,7 +158,7 @@ export class AdvancedSearchComponent implements OnInit {
           this.showStatus = false;
         }
       }
-    });
+    });*/
 
   }
 

@@ -1,4 +1,4 @@
-<div fxLayout="row" >
+<div fxLayout="row">
   <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
 
       <mat-toolbar>
@@ -91,7 +91,16 @@
     fxFlex.lt-md="0 1 calc(50% - 32px)"
     fxFlex.lt-sm="100%"
     *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
+
 </div>
+
+<div *ngIf="isLoad" fxLayout="column" >
+  <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
+
+  </app-pagination>
+</div>
+
+
 <!--div fxLayout="column" fxLayoutAlign="end" class="status-msg">
   <p class="stat-msg" style="text-align: center;color: #F2F2F2 "> <code>Nice</code></p>
 </div-->

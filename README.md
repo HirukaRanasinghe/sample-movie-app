@@ -41,3 +41,4 @@ Angular sample  app like yts.
 24/05/21
 + I created another component for server side pagination.
 + Implemented it in advanced searching and it works fine. Need to add it to quick search too. May need to redesign search page.
++ Paginator is added to the SearchComponent.

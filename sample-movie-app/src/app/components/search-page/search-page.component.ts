@@ -7,6 +7,8 @@ import * as fromApp from '../../store/app.reducer';
 import * as movieActions from '../../store/movie/movie.actions';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BreakpointModel} from '../../interfaces/ui/breakpoint.model';
+import { PaginationComponent } from '../pagination/pagination.component';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-page',
@@ -26,6 +28,7 @@ export class SearchPageComponent implements OnInit {
   movieList: MovieData[];
   movieSubs: Subscription;
 
+  pageEvent: PageEvent;
 
   constructor( private store: Store<fromApp.AppState>, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -90,4 +93,17 @@ export class SearchPageComponent implements OnInit {
     }
   }
 
+  onPageChange($event): void{
+    this.pageEvent = $event;
+    let searchTerm = '';
+    const pageNo = this.pageEvent.pageIndex + 1;
+    console.log(this.searchForm.value);
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params['params']['searchTerm'] != null){
+        searchTerm = params['params']['searchTerm'];
+        this.store.dispatch(new movieActions.GetMovieBySearchTerm(`${searchTerm}&page=${pageNo}`));
+      }
+    });
+  }
 }

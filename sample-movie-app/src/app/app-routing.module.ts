@@ -8,7 +8,7 @@ import {AdvancedSearchComponent} from './components/advanced-search/advanced-sea
 const routes: Routes = [
   {
     path: '',
-    component: AdvancedSearchComponent
+    component: LoginComponent,
   },
   {
     path: 'search-page',
