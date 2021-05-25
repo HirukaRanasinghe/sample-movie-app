@@ -5,8 +5,10 @@
                [opened]="!(isHandset$ | async)" style="padding: 10px">
 
     <div class="mat-elevation-z2" fxLayout="row" fxLayoutAlign="center center" style="padding: 20px">
-      <div>
-          <img src="assets/1200px-Logo-YTS.png" style="width: 100px">
+      <div> <a routerLink="/search-page">
+        <img src="assets/1200px-Logo-YTS.png" style="width: 100px">
+      </a>
+
       </div>
     </div>
 
@@ -57,7 +59,9 @@
         <div style="flex: 1 1 auto;" *ngIf="isHandset$ | async"></div>
 
         <div>
+          <a routerLink="/search-page" style="text-decoration: none; color: #F2F2F2">
           YTS Clone
+          </a>
         </div>
 
         <div style="flex: 1 1 auto;"></div>
@@ -90,7 +94,7 @@
     <div fxLayout="column" fxFlexFill style="flex: 1 1 auto;">
       <router-outlet></router-outlet>
     </div>
-    
+
   </mat-sidenav-content>
 
 </mat-sidenav-container>
