@@ -34,7 +34,7 @@
           </div>
         </form>
 
-        <a routerLink="/search-page/advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
+        <a routerLink="/advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
         <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOGOUT</a>
 
       </div>
@@ -87,7 +87,7 @@
 
 
     </mat-toolbar>
-    <div fxLayout="column" fxFlexFill style="flex: 1 1 auto; height: 100%">
+    <div fxLayout="column" fxFlexFill style="">
       <router-outlet></router-outlet>
     </div>
 

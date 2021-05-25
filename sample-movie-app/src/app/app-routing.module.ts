@@ -16,7 +16,7 @@ const routes: Routes = [
     component: LandingPageComponent,
     children: [
       {
-        path: 'search-page/:searchTerm',
+        path: ':searchTerm',
         component: SearchPageComponent,
       },
       {
@@ -24,14 +24,14 @@ const routes: Routes = [
         component: SearchPageComponent,
       },
       {
-        path: 'advanced-search',
-        component: AdvancedSearchComponent,
-      },
-      {
         path: 'movie-details/:movieId',
         component: MovieDetailsComponent,
       },
     ]
+  },
+  {
+    path: 'advanced-search',
+    component: AdvancedSearchComponent,
   },
 
 ];

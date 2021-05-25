@@ -78,7 +78,6 @@ export class LandingPageComponent implements OnInit {
       console.log(this.searchForm.get('search').value);
       this.router.navigate([`search-page/${this.searchForm.get('search').value}`]);
       this.store.dispatch( new movieActions.GetMovieBySearchTerm(this.searchForm.get('search').value));
-      console.log(this.movieList);
     }
     else {
       this.showErr = true;
