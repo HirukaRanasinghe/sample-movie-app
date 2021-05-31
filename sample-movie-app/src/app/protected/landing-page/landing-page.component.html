@@ -36,14 +36,14 @@
           </div>
         </form>
 
-        <a routerLink="/advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
+        <a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
         <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOGOUT</a>
 
       </div>
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content style="overflow: hidden">
+  <mat-sidenav-content fxLayout="column" fxLayoutGap="10px">
     <mat-toolbar class="mat-elevation-z2">
         <div>
           <button
@@ -91,7 +91,7 @@
 
 
     </mat-toolbar>
-    <div fxLayout="column" fxFlexFill style="flex: 1 1 auto;">
+    <div fxLayout="column" fxFlexFill>
       <router-outlet></router-outlet>
     </div>
 

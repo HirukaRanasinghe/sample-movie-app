@@ -13,9 +13,7 @@ import {reducers, metaReducers} from './store/app.reducer';
 import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
-import { AdvancedSearchComponent } from './components/advanced-search/advanced-search.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
+
 
 @NgModule({
     declarations: [

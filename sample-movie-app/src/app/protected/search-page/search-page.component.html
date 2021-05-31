@@ -1,0 +1,32 @@
+
+<div fxLayout="column" fxLayoutAlign="center">
+
+  <div *ngIf="showStatus" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="status-msg">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" >
+      <p class="stat-msg">Search above to get the movie you wanted. </p>
+    </div>
+  </div>
+
+  <div *ngIf="showErr" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="status-msg">
+    <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" >
+      <p class="err-msg">No Results found. Please refine your search.</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoad" fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="center" fxLayoutGap="32px">
+  <app-movie-card
+
+    fxFlex="0 1 calc(25% - 32px)"
+    fxFlex.lt-md="0 1 calc(50% - 32px)"
+    fxFlex.lt-sm="100%"
+    *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
+
+</div>
+
+<div *ngIf="isLoad" fxLayout="column" >
+  <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
+  </app-pagination>
+</div>
+
+

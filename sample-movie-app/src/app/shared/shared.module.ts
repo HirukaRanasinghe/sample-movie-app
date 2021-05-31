@@ -5,24 +5,17 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 
-import { LoginComponent} from '../components/login/login.component';
-import { SearchPageComponent } from '../components/search-page/search-page.component';
-import { MovieCardComponent } from '../components/movie-card/movie-card.component';
-import {MovieDetailsComponent} from '../components/movie-details/movie-details.component';
+import { LoginComponent} from '../public/login/login.component';
+import { SearchPageComponent } from '../protected/search-page/search-page.component';
+import { MovieCardComponent } from '../protected/movie-card/movie-card.component';
+import {MovieDetailsComponent} from '../protected/movie-details/movie-details.component';
 import {AppRoutingModule} from '../app-routing.module';
-import {PaginationComponent} from '../components/pagination/pagination.component';
-import {AdvancedSearchComponent} from '../components/advanced-search/advanced-search.component';
-import {LandingPageComponent} from '../components/landing-page/landing-page.component';
+import {PaginationComponent} from '../protected/pagination/pagination.component';
+import {AdvancedSearchComponent} from '../protected/advanced-search/advanced-search.component';
+import {LandingPageComponent} from '../protected/landing-page/landing-page.component';
 
 @NgModule({
     declarations: [
-      LoginComponent,
-      SearchPageComponent,
-      MovieCardComponent,
-      MovieDetailsComponent,
-      AdvancedSearchComponent,
-      PaginationComponent,
-      LandingPageComponent,
     ],
     imports: [
         CommonModule,
@@ -30,17 +23,12 @@ import {LandingPageComponent} from '../components/landing-page/landing-page.comp
         MaterialModule,
         FlexLayoutModule,
         ReactiveFormsModule,
-        AppRoutingModule,
     ],
   exports: [
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    SearchPageComponent,
-    MovieDetailsComponent,
-    MovieCardComponent,
-    LoginComponent,
   ]
 })
 export class SharedModule { }

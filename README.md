@@ -46,3 +46,9 @@ Angular sample  app like yts.
 + Created a new component LandingPageComponent which has the basic layout of the app. 
 + Configured responsiveness using the ngrx store.
 + Reconfigured routes accordingly. But there are still some bugs are there.
+
+25/05/2021
++ Fixed Minor bugs.
+
+28/05/2021
++ Components are modularized into public and private, and routes are added accordingly.
