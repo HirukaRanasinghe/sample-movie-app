@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container fullscreen >
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -37,13 +37,13 @@
         </form>
 
         <a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
-        <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOGOUT</a>
+        <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOG OUT</a>
 
       </div>
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content fxLayout="column" fxLayoutGap="10px">
+  <mat-sidenav-content fxLayout="column">
     <mat-toolbar class="mat-elevation-z2">
         <div>
           <button
@@ -85,13 +85,9 @@
 
           </form>
         </div>
-
-
-
-
-
     </mat-toolbar>
-    <div fxLayout="column" fxFlexFill>
+
+    <div style="flex: 1 1 auto; height: 100%" >
       <router-outlet></router-outlet>
     </div>
 

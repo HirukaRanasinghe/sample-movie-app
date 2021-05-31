@@ -52,3 +52,6 @@ Angular sample  app like yts.
 
 28/05/2021
 + Components are modularized into public and private, and routes are added accordingly.
+
+31/05/2021
++ Fixed some UI bugs in the movie details page.
