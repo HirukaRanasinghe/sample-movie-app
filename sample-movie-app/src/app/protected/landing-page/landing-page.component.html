@@ -36,7 +36,7 @@
           </div>
         </form>
 
-        <a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a>
+        <!--a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a-->
         <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOG OUT</a>
 
       </div>
@@ -66,7 +66,6 @@
 
         <div style="flex: 1 1 auto;"></div>
 
-
         <div fxLayout="column" fxLayoutAlign="center center" fxShow="true" fxShow.lt-md="false">
           <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
             <mat-form-field floatLabel="never">
@@ -85,9 +84,13 @@
 
           </form>
         </div>
+      <div fxLayout="row">
+        <button (click)="isShowFilters = !isShowFilters"  mat-icon-button aria-label="filter button" > <mat-icon>filter_alt</mat-icon></button>
+      </div>
     </mat-toolbar>
 
     <div style="flex: 1 1 auto; height: 100%" >
+      <app-advanced-search *ngIf="isShowFilters"></app-advanced-search>
       <router-outlet></router-outlet>
     </div>
 

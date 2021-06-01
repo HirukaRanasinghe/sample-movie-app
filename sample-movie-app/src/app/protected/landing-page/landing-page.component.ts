@@ -22,6 +22,7 @@ export class LandingPageComponent implements OnInit {
   showStatus: boolean;
   showErr: boolean;
   isLoad = false;
+  isShowFilters = false;
 
   isLoading$: Observable<boolean>;
   movieList$: Observable<MovieData[]>;

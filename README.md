@@ -55,3 +55,4 @@ Angular sample  app like yts.
 
 31/05/2021
 + Fixed some UI bugs in the movie details page.
++ Removed Advanced search as another page and added it to show when a user presses filter icon in the landing page.
