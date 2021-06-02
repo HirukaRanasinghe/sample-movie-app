@@ -8,6 +8,7 @@ import {PaginationComponent} from './pagination/pagination.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
 import {ProtectedRoutingModule} from './protected-routing.module';
 import {SharedModule} from '../shared/shared.module';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 
 
@@ -19,6 +20,7 @@ import {SharedModule} from '../shared/shared.module';
     AdvancedSearchComponent,
     PaginationComponent,
     LandingPageComponent,
+    PreloaderComponent,
   ],
   imports: [
     CommonModule,

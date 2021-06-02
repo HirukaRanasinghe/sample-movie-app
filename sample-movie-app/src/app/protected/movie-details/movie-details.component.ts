@@ -37,7 +37,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.movieSub = this.store.select('movie', 'selectedMovie').subscribe((movieDesc) => {
       if (movieDesc != null){
         this.movieDetails = movieDesc['data']['movie'];
-        console.log(this.movieDetails);
         this.backgroundStyleUrl = `background-image: url(${this.movieDetails['background_image']}),linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 1));`;
       }
     });

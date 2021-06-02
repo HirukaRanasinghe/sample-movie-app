@@ -18,7 +18,7 @@ import {ofType} from '@ngrx/effects';
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent implements OnInit {
+export class SearchPageComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
   showStatus: boolean;
   showErr: boolean;
@@ -97,12 +97,10 @@ export class SearchPageComponent implements OnInit {
       quality: data.quality
     };
   }
-  /*this.activatedRoute.paramMap.subscribe(params => {
-      if (params['params']['searchTerm'] != null){
-        searchTerm = params['params']['searchTerm'];
-        this.store.dispatch(new movieActions.GetMovieBySearchTerm(`${searchTerm}&page=${pageNo}`));
-      }
-    });*/
 
+  ngOnDestroy(): void {
+    this.movieSubs.unsubscribe();
+    this.searchDataSubs.unsubscribe();
+  }
 
 }

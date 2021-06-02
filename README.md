@@ -66,4 +66,6 @@ Angular sample  app like yts.
 + Fixed Infinite API call bug.
 + Fixed alignment issue in search results page.
 + Removed navigate to 'search-page/:searchTerm' when using quick search and using ParamMap to send API call when refresh. (Prefer 19/05/2021)
-+ Currently adding preloader. 
++ Created a new component for preloader, which uses mat-spinner and ngRx store to show when the page is loading. It hides after loading.
++ Preloader component takes an input isLoading$ of Observeable<boolean> and used it to show or hide the component.
+ 

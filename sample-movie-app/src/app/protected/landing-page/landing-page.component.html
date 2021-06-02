@@ -42,6 +42,8 @@
 </mat-toolbar>
 <div style="flex: 1 1 auto; height: 100%" >
   <app-advanced-search *ngIf="isShowFilters"></app-advanced-search>
+  <app-preloader [isLoading$]="isLoading$"></app-preloader>
+
   <router-outlet></router-outlet>
 </div>
 
