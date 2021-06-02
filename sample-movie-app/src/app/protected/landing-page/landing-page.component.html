@@ -1,4 +1,52 @@
-<mat-sidenav-container fullscreen >
+
+<mat-toolbar class="mat-elevation-z2">
+  <div style="flex: 1 1 auto;" *ngIf="isHandset$ | async"></div>
+
+  <div>
+    <a routerLink="/search-page">
+    <img src="assets/1200px-Logo-YTS.png" style="width: 100px">
+    </a>
+  </div>
+
+  <div style="flex: 1 1 auto;"></div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxShow="true" fxShow.lt-md="false">
+    <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
+      <mat-form-field floatLabel="never">
+        <mat-label><mat-icon>search</mat-icon></mat-label>
+        <input
+          (keyup.enter)="onSearch()"
+          formControlName="search"
+          type="text"
+          matInput>
+      </mat-form-field>
+      <div class="example-button-container">
+        <button type="submit" mat-mini-fab color="accent" aria-label="search button" style="margin-right:10px">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+
+    </form>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <div (click)="openDialog()">
+      <button  fxHide="true" fxShow.lt-md="{{isHandset$ | async}}" mat-icon-button aria-label="filter button" > <mat-icon>search</mat-icon></button>
+      <button fxHide.lt-md="{{isHandset$ | async}}" mat-raised-button aria-label="filter button" > Filters </button>
+    </div>
+
+    <div>
+      <a fxHide="true" fxShow.lt-md="{{isHandset$ | async}}"  routerLink="/" mat-icon-button aria-label="filter button" > <mat-icon>logout</mat-icon></a>
+      <a fxHide.lt-md="{{isHandset$ | async}}" routerLink="/" mat-raised-button aria-label="filter button" > LOGOUT</a>
+    </div>
+  </div>
+</mat-toolbar>
+<div style="flex: 1 1 auto; height: 100%" >
+  <app-advanced-search *ngIf="isShowFilters"></app-advanced-search>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!--mat-sidenav-container fullscreen >
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -34,66 +82,66 @@
               <mat-icon>search</mat-icon>
             </button>
           </div>
-        </form>
+        </form-->
 
-        <!--a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a-->
-        <a routerLink="/"  (click)="drawer.toggle()" mat-button> LOG OUT</a>
+<!--a routerLink="advanced-search" (click)="drawer.toggle()" mat-button> Advanced Search</a-->
+<!--a routerLink="/"  (click)="drawer.toggle()" mat-button> LOG OUT</a>
 
-      </div>
-    </div>
-  </mat-sidenav>
+</div>
+</div>
+</mat-sidenav>
 
-  <mat-sidenav-content fxLayout="column">
-    <mat-toolbar class="mat-elevation-z2">
-        <div>
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()">
-            <!--*ngIf="isHandset$ | async"-->
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
-        </div>
+<mat-sidenav-content fxLayout="column">
+<mat-toolbar class="mat-elevation-z2">
+<div>
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"-->
+<!--*ngIf="isHandset$ | async"-->
+<!--mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+</button>
+</div>
 
-        <div style="flex: 1 1 auto;" *ngIf="isHandset$ | async"></div>
+<div style="flex: 1 1 auto;" *ngIf="isHandset$ | async"></div>
 
-        <div>
-          <a routerLink="/search-page" style="text-decoration: none; color: #F2F2F2">
-          YTS Clone
-          </a>
-        </div>
+<div>
+<a routerLink="/search-page" style="text-decoration: none; color: #F2F2F2">
+YTS Clone
+</a>
+</div>
 
-        <div style="flex: 1 1 auto;"></div>
+<div style="flex: 1 1 auto;"></div>
 
-        <div fxLayout="column" fxLayoutAlign="center center" fxShow="true" fxShow.lt-md="false">
-          <form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
-            <mat-form-field floatLabel="never">
-              <mat-label><mat-icon>search</mat-icon></mat-label>
-              <input
-                (keyup.enter)="onSearch()"
-                formControlName="search"
-                type="text"
-                matInput>
-            </mat-form-field>
-            <div class="example-button-container">
-              <button type="submit" mat-mini-fab color="accent" aria-label="search button" style="margin-right:10px">
-                <mat-icon>search</mat-icon>
-              </button>
-            </div>
+<div fxLayout="column" fxLayoutAlign="center center" fxShow="true" fxShow.lt-md="false">
+<form fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [formGroup]="searchForm" (ngSubmit)="onSearch()" >
+<mat-form-field floatLabel="never">
+  <mat-label><mat-icon>search</mat-icon></mat-label>
+  <input
+    (keyup.enter)="onSearch()"
+    formControlName="search"
+    type="text"
+    matInput>
+</mat-form-field>
+<div class="example-button-container">
+  <button type="submit" mat-mini-fab color="accent" aria-label="search button" style="margin-right:10px">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
 
-          </form>
-        </div>
-      <div fxLayout="row">
-        <button (click)="isShowFilters = !isShowFilters"  mat-icon-button aria-label="filter button" > <mat-icon>filter_alt</mat-icon></button>
-      </div>
-    </mat-toolbar>
+</form>
+</div>
+<div fxLayout="row">
+<button (click)="isShowFilters = !isShowFilters"  mat-icon-button aria-label="filter button" > <mat-icon>filter_alt</mat-icon></button>
+</div>
+</mat-toolbar>
 
-    <div style="flex: 1 1 auto; height: 100%" >
-      <app-advanced-search *ngIf="isShowFilters"></app-advanced-search>
-      <router-outlet></router-outlet>
-    </div>
+<div style="flex: 1 1 auto; height: 100%" >
+<app-advanced-search *ngIf="isShowFilters"></app-advanced-search>
+<router-outlet></router-outlet>
+</div>
 
-  </mat-sidenav-content>
+</mat-sidenav-content>
 
-</mat-sidenav-container>
+</mat-sidenav-container-->

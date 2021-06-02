@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div *ngIf="isLoad" fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="center" fxLayoutGap="32px">
+<div *ngIf="isLoad" fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="start center" fxLayoutGap="32px">
   <app-movie-card
 
     fxFlex="0 1 calc(25% - 32px)"
@@ -25,8 +25,11 @@
 </div>
 
 <div *ngIf="isLoad" fxLayout="column" >
-  <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
+  <app-pagination [movieList]="movieList" (outEvent)="onPgChange($event)">
   </app-pagination>
+</div>
+<div *ngIf="(!showStatus && !showErr) && !isLoad" fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
 </div>
 
 

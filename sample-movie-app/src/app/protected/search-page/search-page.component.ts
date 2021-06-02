@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
@@ -9,6 +9,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BreakpointModel} from '../../interfaces/ui/breakpoint.model';
 import { PaginationComponent } from '../pagination/pagination.component';
 import {PageEvent} from '@angular/material/paginator';
+import {SearchData} from '../../interfaces/data/search.data';
+import {map} from 'rxjs/operators';
+import {ofType} from '@ngrx/effects';
 
 @Component({
   selector: 'app-search-page',
@@ -27,36 +30,30 @@ export class SearchPageComponent implements OnInit {
   movieList$: Observable<MovieData[]>;
   movieList: MovieData[];
   movieSubs: Subscription;
+  searchDataSubs: Subscription;
+  searchData: string | SearchData;
 
   pageEvent: PageEvent;
 
-  constructor( private store: Store<fromApp.AppState>, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor( private store: Store<fromApp.AppState>) { }
+
 
   ngOnInit(): void {
     this.isHandset$ = this.store.select('ui', 'isHandset');
     this.uiBreakpoint$ = this.store.select('ui', 'uiBreakpoint');
-    this.searchForm = new FormGroup({
-        search: new FormControl(null, []),
-    });
+
     this.showErr = false;
     this.showStatus = true;
 
-    this.activatedRoute.paramMap.subscribe(params => {
-      if (params['params']['searchTerm'] != null){
-        console.log(params);
-        this.store.dispatch(new movieActions.GetMovieBySearchTerm(params['params']['searchTerm']));
-      }
-    });
-    // this.store.dispatch(new movieActions.GetAllMovies());
     this.isLoading$ = this.store.select('movie', 'isLoading');
 
     this.movieList$ = this.store.select('movie', 'movieList');
+
     this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
 
       if (movieList != null){
         this.movieList = movieList;
         this.isLoad = true;
-        console.log(movieList['data']['movie_count']);
         if (movieList['data']['movie_count'] === 0){
           this.showErr = true;
           this.showStatus = false;
@@ -67,43 +64,45 @@ export class SearchPageComponent implements OnInit {
         }
       }
     });
+
+    this.searchDataSubs = this.store.select('movie', 'searchTerm').subscribe( value => {
+      if (value != null){
+        this.searchData = value;
+      }
+    });
   }
-
-  onSearch(): void{
-    if (this.searchForm.get('search').value !== null){
-      console.log(this.searchForm.get('search').value);
-      this.router.navigate([`search-page/${this.searchForm.get('search').value}`]);
-      this.store.dispatch( new movieActions.GetMovieBySearchTerm(this.searchForm.get('search').value));
-      console.log(this.movieList);
-      /*this.isLoading$ = this.store.select('movie', 'isLoading');
-
-      this.movieList$ = this.store.select('movie', 'movieList');
-      this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
-        if (movieList != null){
-          this.movieList = movieList;
-          this.isLoad = true;
-          console.log(movieList['data']['movies']);
-        }
-      });*/
-
-    }
-    else {
-      this.showErr = true;
-      this.showStatus = false;
-    }
-  }
-
-  onPageChange($event): void{
+  onPgChange($event): void{
     this.pageEvent = $event;
-    let searchTerm = '';
-    const pageNo = this.pageEvent.pageIndex + 1;
-    console.log(this.searchForm.value);
+    let searchTerm: SearchData;
+    const pageNo = $event.pageIndex + 1;
 
-    this.activatedRoute.paramMap.subscribe(params => {
+    if (typeof( this.searchData) === 'string'){
+      console.log(`${this.searchData}&page=${pageNo}`);
+      this.store.dispatch(new movieActions.GetMovieBySearchTerm(`${this.searchData}&page=${pageNo}`));
+    }
+    else if (typeof(this.searchData) === 'object'){
+      searchTerm = this.objToSearchPageData(this.searchData, pageNo);
+      this.store.dispatch(new movieActions.GetMovieBySearchTerm(searchTerm));
+    }
+  }
+
+  objToSearchPageData(data: SearchData, page: number): SearchData {
+    return {
+      query_term: data.query_term,
+      page,
+      genre: data.genre,
+      minimum_rating: data.minimum_rating,
+      order_by: data.order_by,
+      sort_by: data.sort_by,
+      quality: data.quality
+    };
+  }
+  /*this.activatedRoute.paramMap.subscribe(params => {
       if (params['params']['searchTerm'] != null){
         searchTerm = params['params']['searchTerm'];
         this.store.dispatch(new movieActions.GetMovieBySearchTerm(`${searchTerm}&page=${pageNo}`));
       }
-    });
-  }
+    });*/
+
+
 }

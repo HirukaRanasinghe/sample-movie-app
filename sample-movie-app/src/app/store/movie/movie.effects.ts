@@ -65,6 +65,7 @@ export class MovieEffects{
         else{
           searchUrl = `https://yts.mx/api/v2/list_movies.json?`;
           const searchObj: SearchData = data.payload;
+          console.log('test', data.payload);
           for (const item in searchObj){
             if (searchObj[item] !== null){
               const appendStr = `&${item}=${searchObj[item]}`;

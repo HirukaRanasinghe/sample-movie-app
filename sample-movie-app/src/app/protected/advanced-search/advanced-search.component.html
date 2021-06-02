@@ -1,10 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxFlexFill>
+<mat-dialog-content fxFlexFill>
+
+
+<div fxLayout="column" fxLayoutAlign="center center" style="margin: auto">
 
     <form
-      fxLayout="column" fxLayoutAlign="center stretch" class="search-card"
-      [formGroup]="advancedSearchForm" (ngSubmit)="onSubmit()"
-      style="margin-top:20px;"
-       fxLayoutGap="20px">
+      fxLayout="column" fxLayoutAlign="center stretch" style="padding: 10px"
+      [formGroup]="advancedSearchForm" (ngSubmit)="onSubmit(); closeDialog();"
+       >
       <h1 class="paragraph">Advanced Search</h1>
       <div fxLayout="column" fxLayoutAlign="center stretch" >
         <mat-form-field fxFlex>
@@ -80,13 +82,18 @@
 
         </div>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <button type="submit" mat-raised-button color="accent"><mat-icon>search</mat-icon> Search</button>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button type="submit" mat-raised-button color="accent"><mat-icon>search</mat-icon></button>
+        <button (click)="closeDialog();" type="button" mat-raised-button color="warn"><mat-icon>close</mat-icon></button>
       </div>
 
     </form>
 
-  <!--div *ngIf="showStatus || showErr" fxLayout="column" fxLayoutAlign="center center" class="search-card">
+</div>
+
+</mat-dialog-content>
+
+<!--div *ngIf="showStatus || showErr" fxLayout="column" fxLayoutAlign="center center" class="search-card">
 
     <div *ngIf="showStatus" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" class="status-msg">
       <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" >
@@ -101,25 +108,19 @@
     </div>
   </div-->
 
-  <!--div *ngIf="isLoad" fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="center" fxLayoutGap="32px" style="margin-top: 20px">
-    <app-movie-card
+<!--div *ngIf="isLoad" fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="center" fxLayoutGap="32px" style="margin-top: 20px">
+  <app-movie-card
 
-      fxFlex="0 1 calc(25% - 32px)"
-      fxFlex.lt-md="0 1 calc(50% - 32px)"
-      fxFlex.lt-sm="100%"
-      *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
-
-  </div>
-
-  <div *ngIf="isLoad" fxLayout="column" fxFlex >
-    <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
-
-    </app-pagination>
-
-  </div-->
-
+    fxFlex="0 1 calc(25% - 32px)"
+    fxFlex.lt-md="0 1 calc(50% - 32px)"
+    fxFlex.lt-sm="100%"
+    *ngFor="let movie of movieList['data']['movies']" [movieDetails]="movie"></app-movie-card>
 
 </div>
 
+<div *ngIf="isLoad" fxLayout="column" fxFlex >
+  <app-pagination [movieList]="movieList" (outEvent)="onPageChange($event)">
 
+  </app-pagination>
 
+</div-->

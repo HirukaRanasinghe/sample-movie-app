@@ -56,3 +56,14 @@ Angular sample  app like yts.
 31/05/2021
 + Fixed some UI bugs in the movie details page.
 + Removed Advanced search as another page and added it to show when a user presses filter icon in the landing page.
+
+01/05/2021
++ Removed the Advanced search implementation and make it as pop up. 
++ BUG: It sends infinite API calls when a user changes page using paginator.
+
+02/05/2021
++ configured ngRx store to save SearchData object when a user search. 
++ Fixed Infinite API call bug.
++ Fixed alignment issue in search results page.
++ Removed navigate to 'search-page/:searchTerm' when using quick search and using ParamMap to send API call when refresh. (Prefer 19/05/2021)
++ Currently adding preloader. 

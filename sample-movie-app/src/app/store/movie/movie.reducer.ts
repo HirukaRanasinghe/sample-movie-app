@@ -4,7 +4,8 @@ import { MovieState } from '../../interfaces/data/movie-state';
 const initState: MovieState = {
   isLoading: false,
   movieList: null,
-  selectedMovie: null
+  selectedMovie: null,
+  searchTerm: null
 };
 
 export function movieReducer( state = initState, action: movieActions.MovieActions): MovieState{
@@ -45,6 +46,7 @@ export function movieReducer( state = initState, action: movieActions.MovieActio
       return {
         ...state,
         isLoading: true,
+        searchTerm: action.payload,
       };
     case movieActions.GET_MOVIE_BY_SEARCH_TERM_COMPLETE:
       return {

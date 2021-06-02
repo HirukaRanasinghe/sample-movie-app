@@ -17,10 +17,10 @@ const routes: Routes = [
         path: 'advanced-search',
         component: AdvancedSearchComponent,
       },
-      {
+      /*{
         path: ':searchTerm',
         component: SearchPageComponent,
-      },
+      },*/
       {
         path: '',
         component: SearchPageComponent,

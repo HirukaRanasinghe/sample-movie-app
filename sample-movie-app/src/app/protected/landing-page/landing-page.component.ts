@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as fromApp from '../../store/app.reducer';
@@ -9,13 +9,15 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {MovieData} from '../../interfaces/data/movie-data';
 import {PageEvent} from '@angular/material/paginator';
 import * as movieActions from '../../store/movie/movie.actions';
+import {MatDialog} from '@angular/material/dialog';
+import {AdvancedSearchComponent} from '../advanced-search/advanced-search.component';
+import {SearchData} from '../../interfaces/data/search.data';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
-  @ViewChild('drawer', {static: false}) drawer: MatSidenav;
+export class LandingPageComponent implements OnInit, OnDestroy {
   isHandset$: Observable<boolean>;
   uiBreakpoint$: Observable<BreakpointModel>;
   searchForm: FormGroup;
@@ -28,11 +30,21 @@ export class LandingPageComponent implements OnInit {
   movieList$: Observable<MovieData[]>;
   movieList: MovieData[];
   movieSubs: Subscription;
-
+  searchDataFromDialog: SearchData;
   pageEvent: PageEvent;
 
   constructor(private store: Store<fromApp.AppState>,
-              private router: Router, private activatedRoute: ActivatedRoute) { }
+              private router: Router, private activatedRoute: ActivatedRoute,
+              public dialog: MatDialog) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AdvancedSearchComponent, {disableClose: true});
+
+    /*dialogRef.afterClosed().subscribe((result: SearchData) => {
+      this.searchDataFromDialog = result;
+      console.log(result);
+    });*/
+  }
 
   ngOnInit(): void {
     this.isHandset$ = this.store.select('ui', 'isHandset');
@@ -45,13 +57,13 @@ export class LandingPageComponent implements OnInit {
     this.showErr = false;
     this.showStatus = true;
 
-    this.activatedRoute.paramMap.subscribe(params => {
+    /*this.activatedRoute.paramMap.subscribe(params => {
       console.log('Landing page params', params);
       if (params['params']['searchTerm'] != null){
         console.log(params);
         this.store.dispatch(new movieActions.GetMovieBySearchTerm(params['params']['searchTerm']));
       }
-    });
+    });*/
     // this.store.dispatch(new movieActions.GetAllMovies());
     this.isLoading$ = this.store.select('movie', 'isLoading');
 
@@ -77,7 +89,7 @@ export class LandingPageComponent implements OnInit {
   onSearch(): void{
     if (this.searchForm.get('search').value !== null){
       console.log(this.searchForm.get('search').value);
-      this.router.navigate([`search-page/${this.searchForm.get('search').value}`]);
+      // this.router.navigate([`search-page/${this.searchForm.get('search').value}`]);
       this.store.dispatch( new movieActions.GetMovieBySearchTerm(this.searchForm.get('search').value));
     }
     else {
@@ -86,4 +98,7 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.movieSubs.unsubscribe();
+  }
 }

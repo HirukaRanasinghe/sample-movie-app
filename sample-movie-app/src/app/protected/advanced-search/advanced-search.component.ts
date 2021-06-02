@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
 import {PageEvent} from '@angular/material/paginator';
+import {MatDialogRef} from '@angular/material/dialog';
 interface KeyVal {
   viewValue: string;
   value: string;
@@ -71,11 +72,14 @@ export class AdvancedSearchComponent implements OnInit {
   movieList$: Observable<MovieData[]>;
   movieList: MovieData[];
   movieSubs: Subscription;
-
+  searchValObject: SearchData;
   pageEvent: PageEvent;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>, public dialogRef: MatDialogRef<AdvancedSearchComponent>) { }
 
+  closeDialog(): void{
+    this.dialogRef.close(this.searchValObject);
+  }
   ngOnInit(): void {
     this.showStatus = true;
     this.showErr = false;
@@ -128,11 +132,12 @@ export class AdvancedSearchComponent implements OnInit {
       this.showStatus = false;
       const searchVals: object = this.advancedSearchForm.value;
       const searchDataObj: SearchData = this.convertToSearchDataObj(searchVals);
+      this.searchValObject = searchDataObj;
       this.store.dispatch(new movieActions.GetMovieBySearchTerm(searchDataObj));
     }
   }
 
-  onPageChange($event): void{
+  /*onPageChange($event): void{
     this.pageEvent = $event;
     const pageNo = this.pageEvent.pageIndex + 1;
     console.log(pageNo);
@@ -142,28 +147,11 @@ export class AdvancedSearchComponent implements OnInit {
     const nxtPage: SearchData = this.convertToSearchDataObj(searchVals);
     nxtPage.page = pageNo;
     this.store.dispatch(new movieActions.GetMovieBySearchTerm(nxtPage));
-    /*this.movieSubs = this.store.select('movie', 'movieList').subscribe((movieList: MovieData[]) => {
 
-      if (movieList != null){
-        this.movieList = movieList;
-        this.isLoad = true;
-        console.log(movieList['data']['movie_count']);
-        if (movieList['data']['movie_count'] === 0){
-          console.log('works');
-          this.showErr = true;
-          this.showStatus = false;
-        }
-        else {
-          this.showErr = false;
-          this.showStatus = false;
-        }
-      }
-    });*/
-
-  }
+  }*/
 
   // Convert form values into a SearchData object
-  convertToSearchDataObj(data: object): SearchData{
+   public convertToSearchDataObj(data: object): SearchData{
     const searchData: SearchData = {
       query_term: null,
       page: null,
