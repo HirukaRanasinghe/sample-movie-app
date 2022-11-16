@@ -5,7 +5,7 @@ import * as fromApp from '../../store/app.reducer';
 import {Observable, Subscription} from 'rxjs';
 import {MatSidenav} from '@angular/material/sidenav';
 import {BreakpointModel} from '../../interfaces/ui/breakpoint.model';
-import {FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {MovieData} from '../../interfaces/data/movie-data';
 import {PageEvent} from '@angular/material/paginator';
 import * as movieActions from '../../store/movie/movie.actions';
@@ -20,7 +20,7 @@ import {SearchData} from '../../interfaces/data/search.data';
 export class LandingPageComponent implements OnInit, OnDestroy {
   isHandset$: Observable<boolean>;
   uiBreakpoint$: Observable<BreakpointModel>;
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   showStatus: boolean;
   showErr: boolean;
   isLoad = false;
@@ -50,8 +50,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.isHandset$ = this.store.select('ui', 'isHandset');
     this.uiBreakpoint$ = this.store.select('ui', 'uiBreakpoint');
 
-    this.searchForm = new FormGroup({
-      search: new FormControl(null, []),
+    this.searchForm = new UntypedFormGroup({
+      search: new UntypedFormControl(null, []),
     });
 
     this.showErr = false;

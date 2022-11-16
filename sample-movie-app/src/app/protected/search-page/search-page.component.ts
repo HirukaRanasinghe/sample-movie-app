@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, UntypedFormGroup} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {MovieData} from '../../interfaces/data/movie-data';
 import { Store } from '@ngrx/store';
@@ -19,7 +19,7 @@ import {ofType} from '@ngrx/effects';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   showStatus: boolean;
   showErr: boolean;
   isLoad = false;

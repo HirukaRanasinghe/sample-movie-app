@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import { SearchData } from '../../interfaces/data/search.data';
 import * as movieActions from '../../store/movie/movie.actions';
 import * as fromApp from '../../store/app.reducer';
@@ -20,7 +20,7 @@ interface KeyVal {
 
 
 export class AdvancedSearchComponent implements OnInit {
-  advancedSearchForm: FormGroup;
+  advancedSearchForm: UntypedFormGroup;
   queryTerm: string | null;
   page: number| null;
   qualities: string[] = ['All', '720p', '1080p', '2160p', '3D'];
@@ -103,23 +103,23 @@ export class AdvancedSearchComponent implements OnInit {
       }
     });
 
-    this.advancedSearchForm = new FormGroup({
-      queryTermInput: new FormControl(
+    this.advancedSearchForm = new UntypedFormGroup({
+      queryTermInput: new UntypedFormControl(
         null,
         []),
-      qualityInput: new FormControl(
+      qualityInput: new UntypedFormControl(
         null,
         []),
-      minRatingInput: new FormControl(
+      minRatingInput: new UntypedFormControl(
         null,
         [Validators.min(0) , Validators.max(9)]),
-      genreInput: new FormControl(
+      genreInput: new UntypedFormControl(
         null,
         []),
-      sortBy: new FormControl(
+      sortBy: new UntypedFormControl(
         null,
         []),
-      orderBy: new FormControl(
+      orderBy: new UntypedFormControl(
         null,
         [])
 
