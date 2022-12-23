@@ -73,7 +73,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       if (movieList != null){
         this.movieList = movieList;
         this.isLoad = true;
-        console.log(movieList['data']['movie_count']);
         if (movieList['data']['movie_count'] === 0){
           this.showErr = true;
           this.showStatus = false;

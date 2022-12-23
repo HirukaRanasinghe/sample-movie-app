@@ -26,5 +26,16 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "yts.mx",
+      "urls": ["https://yts.mx/**"],
+      "cacheConfig": {
+        "maxSize": 3,
+        "maxAge": "7d",
+        "strategy": "freshness"
+      }
+    }
   ]
 }
