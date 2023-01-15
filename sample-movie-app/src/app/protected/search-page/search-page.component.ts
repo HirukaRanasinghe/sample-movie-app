@@ -41,7 +41,17 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isHandset$ = this.store.select('ui', 'isHandset');
     this.uiBreakpoint$ = this.store.select('ui', 'uiBreakpoint');
-
+    this.store.dispatch(new movieActions.GetMovieBySearchTerm(
+      {
+        query_term: '',
+        page: null,
+        genre: '',
+        minimum_rating: null,
+        order_by: '',
+        sort_by: '',
+        quality: ''
+      }
+    ));
     this.showErr = false;
     this.showStatus = true;
 
