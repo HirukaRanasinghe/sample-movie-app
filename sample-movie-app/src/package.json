@@ -1,0 +1,9 @@
+{
+  "name": "sample-movie-app",
+  "productName": "YTS Desktop",
+  "CompanyName": "Code Link",
+  "version": "1.0.0",
+  "description": "Angular CLI + Electron YTS Clone Desktop Application",
+  "main": "electron.prod.js",
+  "license": "MIT"
+}
