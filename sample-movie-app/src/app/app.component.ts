@@ -8,6 +8,7 @@ import * as fromApp from './store/app.reducer';
 import * as uiActions from './store/ui/ui.actions';
 import {BreakpointModel} from './interfaces/ui/breakpoint.model';
 import {DEFAULT_BREAKPOINTS} from './config/breakpoint.config';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +18,16 @@ import {DEFAULT_BREAKPOINTS} from './config/breakpoint.config';
 export class AppComponent implements OnInit, OnDestroy {
   breakpointSubs: Subscription;
 
-  title = 'sample-movie-app';
+  title = 'YTS Desktop';
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store<fromApp.AppState>,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.title);
     // Angular CDK Based Breakpoints Calculation Start
     this.breakpointSubs = this.breakpointObserver.observe([
         ...breakpoints.breakpoints
