@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /packages
+/windows_installer
 # Only exists if Bazel was run
 /bazel-out
 
