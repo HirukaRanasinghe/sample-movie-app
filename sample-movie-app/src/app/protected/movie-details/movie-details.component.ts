@@ -41,6 +41,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onBack(): void{
+    history.back();
+  }
 
   ngOnDestroy(): void {
     if (this.movieSub){

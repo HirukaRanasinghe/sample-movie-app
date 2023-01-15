@@ -1,4 +1,7 @@
 <app-preloader [isLoading$]="isMovieLoading$"></app-preloader>
+<div style="padding: 10px">
+  <button mat-raised-button color="accent" (click)="onBack()">Back</button>
+</div>
 <div fxLayout="column" fxFlexFill fxLayoutAlign="center center" [style]="backgroundStyleUrl" class="movie-background">
 
   <div fxLayout="column"
